@@ -8,42 +8,55 @@
     tools:context=".MainActivity">
 
     <TextView
-        android:layout_width="match_parent"
+        android:id="@+id/welcomeText"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="200dp"
+        android:layout_marginTop="168dp"
         android:text="@string/welcome"
         android:textAlignment="center"
         android:textSize="48sp"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:layout_editor_absoluteX="0dp" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:layout_width="match_parent"
+        android:id="@+id/chooseRoleTitle"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="344dp"
+        android:layout_marginTop="164dp"
         android:text="@string/choose_your_role"
-        android:textAlignment="center"
-        android:textSize="25sp"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:layout_editor_absoluteX="0dp" />
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/welcomeText" />
 
     <Button
-        android:id="@+id/instructorAccessButton"
-        android:layout_width="411dp"
-        android:layout_height="wrap_content"
-        android:text="@string/instructor_access"
-        tools:layout_editor_absoluteX="0dp"
-        tools:layout_editor_absoluteY="433dp" />
-
-    <Button
-        android:id="@+id/studentAccessButton"
+        android:id="@+id/instructorButton"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="48dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="32dp"
+        android:text="@string/instructor_access"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/chooseRoleTitle" />
+
+    <Button
+        android:id="@+id/studentButton"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="28dp"
+        android:layout_marginEnd="32dp"
         android:text="@string/student_access"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/instructorAccessButton" />
+        app:layout_constraintTop_toBottomOf="@id/instructorButton" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

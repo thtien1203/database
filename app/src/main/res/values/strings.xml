@@ -1,8 +1,13 @@
 <resources>
     <string name="app_name">phase3</string>
-    <string name="url">http://192.168.1.16/Phase3/</string>
+    <string name="url">http://192.168.1.27/Phase3/</string>
     <string name="student_access">Student</string>
     <string name="instructor_access">Instructor</string>
     <string name="welcome">Welcome!</string>
     <string name="choose_your_role">Choose your role.</string>
+    <string name="instructor">Instructor</string>
+    <string name="student">Student</string>
+    <string name="email">Email:</string>
+    <string name="password">Password:</string>
+    <string name="login">Login</string>
 </resources>

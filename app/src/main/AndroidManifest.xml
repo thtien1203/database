@@ -36,6 +36,32 @@
             android:theme="@style/Theme.Phase3">
         </activity>
 
+        <!-- Login Activity - This is another screen -->
+        <activity
+            android:name=".LoginActivity"
+            android:exported="true"
+            android:label="Login Activity"
+            android:theme="@style/Theme.Phase3">
+        </activity>
+
+        <!-- Instructor Home Activity -->
+        <activity
+            android:name=".InstructorHomeActivity"
+            android:exported="true"
+            android:label="Instructor Home"
+            android:theme="@style/Theme.Phase3"
+            tools:ignore="Instantiatable">
+        </activity>
+
+        <!-- Student Home Activity -->
+        <activity
+            android:name=".StudentHomeActivity"
+            android:exported="true"
+            android:label="Student Home"
+            android:theme="@style/Theme.Phase3"
+            tools:ignore="Instantiatable">
+        </activity>
+
     </application>
 
 </manifest>
