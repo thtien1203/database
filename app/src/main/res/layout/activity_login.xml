@@ -25,13 +25,13 @@
         android:id="@+id/emailEditText"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="160dp"
+        android:layout_marginTop="196dp"
         android:hint="@string/email"
         android:inputType="textEmailAddress"
         android:textColor="#000000"
         android:textColorHint="#5A5A5A"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/loginTitleTextView" />
 

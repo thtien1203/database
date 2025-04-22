@@ -15,4 +15,11 @@
     <string name="create_account">Create Account</string>
     <string name="log_in">Log In</string>
     <string name="welcome_student">Welcome Student</string>
+    <string name="browse_available_courses">Browse Available Courses</string>
+    <string name="view_my_courses">View My Courses</string>
+    <string name="academic_alerts">Academic Alerts</string>
+    <string name="logout">Logout</string>
+    <string name="view_current_students">View Current Students</string>
+    <string name="submit_midterm_grades">Submit Midterm Grades</string>
+    <string name="view_taught_sections">View Taught Sections</string>
 </resources>

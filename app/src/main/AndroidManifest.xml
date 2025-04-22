@@ -41,8 +41,7 @@
             android:name=".StudentChoiceActivity"
             android:exported="true"
             android:label="Student Choice"
-            android:theme="@style/Theme.Phase3"
-            tools:ignore="Instantiatable">
+            android:theme="@style/Theme.Phase3">
         </activity>
 
         <!-- Login Activity - This is another screen -->
@@ -58,8 +57,7 @@
             android:name=".InstructorHomeActivity"
             android:exported="true"
             android:label="Instructor Home"
-            android:theme="@style/Theme.Phase3"
-            tools:ignore="Instantiatable">
+            android:theme="@style/Theme.Phase3">
         </activity>
 
         <!-- Student Home Activity -->
@@ -67,8 +65,7 @@
             android:name=".StudentHomeActivity"
             android:exported="true"
             android:label="Student Home"
-            android:theme="@style/Theme.Phase3"
-            tools:ignore="Instantiatable">
+            android:theme="@style/Theme.Phase3">
         </activity>
 
     </application>

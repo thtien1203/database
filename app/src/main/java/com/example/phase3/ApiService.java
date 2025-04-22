@@ -17,12 +17,12 @@ public interface ApiService {
             @Field("student_type") String studentType,
             @Field("submit") String submit
     );
-    @FormUrlEncoded
-    @POST("login.php")
-    Call<ApiResponse> login(
+    @FormUrlEncoded // format of request
+    @POST("login.php") // the endpoint of my webserver that is recieving the request
+    Call<ApiResponse> login( // the login method is called
             @Field("email") String email,
             @Field("password") String password,
-            @Field("role") String role, // Added role parameter
+            @Field("role") String role, // added role parameter to allow for both student and instructor login in one page
             @Field("submit") String submit
     );
 

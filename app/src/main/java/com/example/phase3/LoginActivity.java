@@ -1,6 +1,5 @@
 package com.example.phase3;
 
-import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -22,12 +21,11 @@ public class LoginActivity extends AppCompatActivity {
 
     private EditText emailEditText, passwordEditText;
     private Button loginButton;
+
+    private TextView loginTitle;
     private ProgressBar progressBar;
     private ApiService apiService;
     private String userRole;  // "instructor" or "student"
-
-    private TextView loginTitle;
-
 
 
     @Override
@@ -41,7 +39,7 @@ public class LoginActivity extends AppCompatActivity {
         loginButton = findViewById(R.id.loginButton);
         progressBar = findViewById(R.id.progressBar);
 
-        // Retrieve the role passed from MainActivity
+        // get the role passed from MainActivity through intent extra
         userRole = getIntent().getStringExtra("role");
 
         if (Objects.equals(userRole, "instructor")){
@@ -64,7 +62,7 @@ public class LoginActivity extends AppCompatActivity {
     private void loginUser() {
         String email = emailEditText.getText().toString().trim();
         String password = passwordEditText.getText().toString().trim();
-        String role = userRole; // You should assign the role based on the user selection
+        String role = userRole;
 
         if (email.isEmpty() || password.isEmpty()) {
             Toast.makeText(this, "Please enter email and password", Toast.LENGTH_SHORT).show();
@@ -75,7 +73,7 @@ public class LoginActivity extends AppCompatActivity {
         loginButton.setEnabled(false);
 
         // Pass role along with email and password
-        Call<ApiResponse> call = apiService.login(email, password, role, "Login");
+        Call<ApiResponse> call = apiService.login(email, password, role, "Login"); // response to web server php
 
         call.enqueue(new Callback<ApiResponse>() {
             @Override

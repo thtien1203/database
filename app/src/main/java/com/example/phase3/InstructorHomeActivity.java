@@ -1,5 +1,43 @@
 package com.example.phase3;
 
-public class InstructorHomeActivity {
+import android.content.Intent;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 
+import androidx.appcompat.app.AppCompatActivity;
+
+public class InstructorHomeActivity extends AppCompatActivity {
+
+    private Button viewSectionsButton, submitGradesButton, currentStudentsButton, instructorLogoutButton;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_instructor_home);
+
+        viewSectionsButton = findViewById(R.id.viewSectionsButton);
+        submitGradesButton = findViewById(R.id.submitGradesButton);
+        currentStudentsButton = findViewById(R.id.currentStudentsButton);
+        instructorLogoutButton = findViewById(R.id.instructorLogoutButton);
+
+        // set up onClick listeners below
+    }
+
+
+    private void openViewTaughtSections() {
+        // intent here
+    }
+
+    private void openSubmitGrades() {
+        // intent here
+    }
+
+    private void openViewCurrentStudents() {
+        // intent here
+    }
+
+    private void logout() {
+        // intent here
+    }
 }
