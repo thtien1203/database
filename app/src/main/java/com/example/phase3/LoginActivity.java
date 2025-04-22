@@ -1,14 +1,18 @@
 package com.example.phase3;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import java.util.Objects;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -22,12 +26,16 @@ public class LoginActivity extends AppCompatActivity {
     private ApiService apiService;
     private String userRole;  // "instructor" or "student"
 
+    private TextView loginTitle;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
+        loginTitle = findViewById(R.id.loginTitleTextView);
         emailEditText = findViewById(R.id.emailEditText);
         passwordEditText = findViewById(R.id.passwordEditText);
         loginButton = findViewById(R.id.loginButton);
@@ -35,6 +43,12 @@ public class LoginActivity extends AppCompatActivity {
 
         // Retrieve the role passed from MainActivity
         userRole = getIntent().getStringExtra("role");
+
+        if (Objects.equals(userRole, "instructor")){
+            loginTitle.setText(R.string.instructor_login);
+        } else{
+            loginTitle.setText(R.string.student_login);
+        }
 
         String baseurl = getString(R.string.url);
         apiService = RetrofitClient.getApiService(baseurl);

@@ -36,6 +36,15 @@
             android:theme="@style/Theme.Phase3">
         </activity>
 
+        <!-- Student Choice Activity -->
+        <activity
+            android:name=".StudentChoiceActivity"
+            android:exported="true"
+            android:label="Student Choice"
+            android:theme="@style/Theme.Phase3"
+            tools:ignore="Instantiatable">
+        </activity>
+
         <!-- Login Activity - This is another screen -->
         <activity
             android:name=".LoginActivity"
