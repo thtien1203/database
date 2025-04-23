@@ -11,6 +11,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.viewpager2.widget.ViewPager2;
 
 import java.util.Objects;
 
@@ -34,6 +35,12 @@ public class StudentHomeActivity extends AppCompatActivity {
 
 
         // set up onClick listeners below
+        alertsButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                openAcademicAlerts();
+            }
+        });
 
     }
 
@@ -46,7 +53,8 @@ public class StudentHomeActivity extends AppCompatActivity {
     }
 
     private void openAcademicAlerts() {
-        // intent here
+        Intent intent = new Intent(StudentHomeActivity.this, StudentAlertsActivity.class);
+        startActivity(intent);
     }
 
     private void logout() {

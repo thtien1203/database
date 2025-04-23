@@ -22,6 +22,12 @@ public class InstructorHomeActivity extends AppCompatActivity {
         instructorLogoutButton = findViewById(R.id.instructorLogoutButton);
 
         // set up onClick listeners below
+        submitGradesButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                openSubmitGrades();
+            }
+        });
     }
 
 
@@ -30,7 +36,8 @@ public class InstructorHomeActivity extends AppCompatActivity {
     }
 
     private void openSubmitGrades() {
-        // intent here
+        Intent intent = new Intent(InstructorHomeActivity.this, InstructorGradeActivity.class);
+        startActivity(intent);
     }
 
     private void openViewCurrentStudents() {
