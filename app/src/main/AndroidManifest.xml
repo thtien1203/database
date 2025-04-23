@@ -68,6 +68,14 @@
             android:theme="@style/Theme.Phase3">
         </activity>
 
+        <!-- Student Home Activity -->
+        <activity
+            android:name=".CourseRegistrationActivity"
+            android:exported="true"
+            android:label="Course Registration"
+            android:theme="@style/Theme.Phase3">
+        </activity>
+
     </application>
 
 </manifest>

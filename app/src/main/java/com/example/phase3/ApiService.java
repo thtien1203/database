@@ -26,6 +26,24 @@ public interface ApiService {
             @Field("submit") String submit
     );
 
+    @FormUrlEncoded // format of request
+    @POST("student_register.php") // the endpoint of my webserver that is recieving the request
+    Call<ApiResponse> studentRegister( // the login method is called
+                             @Field("email") String email,
+                             @Field("password") String password,
+                             @Field("role") String role, // added role parameter to allow for both student and instructor login in one page
+                             @Field("submit") String submit
+    );
+
+
+    @FormUrlEncoded // format of request
+    @POST("get_available_courses.php") // the endpoint of my webserver that is recieving the request
+    Call<ApiResponse> getAvailableCourses( // the login method is called
+                               @Field("semester") String semester,
+                               @Field("year") int year, // added role parameter to allow for both student and instructor login in one page
+                               @Field("submit") String submit
+    );
+
     /*@FormUrlEncoded
     @POST("login_student.php")
     Call<ApiResponse> loginStudent(
