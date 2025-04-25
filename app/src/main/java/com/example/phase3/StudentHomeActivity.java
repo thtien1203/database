@@ -21,17 +21,19 @@ import retrofit2.Response;
 
 public class StudentHomeActivity extends AppCompatActivity {
 
-    private Button browseCoursesButton, viewCoursesButton, alertsButton, studentLogoutButton;
+    private Button courseRegistrationButton, viewCoursesButton, alertsButton, studentLogoutButton;
+
+    private String userEmail;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_student_home);
 
-        browseCoursesButton = findViewById(R.id.browseCoursesButton);
-        viewCoursesButton = findViewById(R.id.viewCoursesButton);
+
         alertsButton = findViewById(R.id.alertsButton);
         studentLogoutButton = findViewById(R.id.studentLogoutButton);
+        courseRegistrationButton = findViewById(R.id.courseRegistrationButton);
 
         userEmail = getIntent().getStringExtra("email");
 
@@ -51,8 +53,10 @@ public class StudentHomeActivity extends AppCompatActivity {
 
     }
 
-    private void openBrowseCourses() {
-        // intent here
+    private void openCourseRegistration() {
+        Intent intent = new Intent(StudentHomeActivity.this, CourseRegistrationActivity.class);
+        intent.putExtra("email", userEmail); // pass user email to the next activity
+        startActivity(intent);
     }
 
     private void openViewMyCourses() {
@@ -60,7 +64,8 @@ public class StudentHomeActivity extends AppCompatActivity {
     }
 
     private void openAcademicAlerts() {
-        // intent here
+        Intent intent = new Intent(StudentHomeActivity.this, StudentAlertsActivity.class);
+        startActivity(intent);
     }
 
     private void logout() {
