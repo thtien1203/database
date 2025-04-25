@@ -25,12 +25,16 @@ public class CourseRegistrationActivity extends AppCompatActivity {
 
     private int yearSelected;
 
+    private String userEmail;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_course_registration);
 
         courseListLayout = findViewById(R.id.courseListLayout); // parent layout to hold course items
+
+        userEmail = getIntent().getStringExtra("email");
 
         String baseurl = getString(R.string.url);
         apiService = RetrofitClient.getApiService(baseurl);
@@ -121,6 +125,9 @@ public class CourseRegistrationActivity extends AppCompatActivity {
 
     // Handle course registration (this could involve another API call)
     private void registerForCourse(Course course) {
+
+        //Call<ApiResponse> call = apiService.registerForCourse(userEmail, course.getSection() , "Get Available Courses");
+
         // For simplicity, let's just show a toast here
         Toast.makeText(this, "Registered for: " + course.getCourseId(), Toast.LENGTH_SHORT).show();
     }
