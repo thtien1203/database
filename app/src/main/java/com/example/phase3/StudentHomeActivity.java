@@ -33,7 +33,14 @@ public class StudentHomeActivity extends AppCompatActivity {
         alertsButton = findViewById(R.id.alertsButton);
         studentLogoutButton = findViewById(R.id.studentLogoutButton);
 
+        userEmail = getIntent().getStringExtra("email");
 
+        courseRegistrationButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                openCourseRegistration();// when button is clicked
+            }
+        });
         // set up onClick listeners below
         alertsButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -53,8 +60,7 @@ public class StudentHomeActivity extends AppCompatActivity {
     }
 
     private void openAcademicAlerts() {
-        Intent intent = new Intent(StudentHomeActivity.this, StudentAlertsActivity.class);
-        startActivity(intent);
+        // intent here
     }
 
     private void logout() {
