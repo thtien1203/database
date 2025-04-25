@@ -1,9 +1,13 @@
 package com.example.phase3;
 
+import java.util.List;
+
 import retrofit2.Call;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
+import retrofit2.http.GET;
 import retrofit2.http.POST;
+import retrofit2.http.Query;
 
 public interface ApiService {
     @FormUrlEncoded
@@ -42,6 +46,46 @@ public interface ApiService {
                                @Field("semester") String semester,
                                @Field("year") int year, // added role parameter to allow for both student and instructor login in one page
                                @Field("submit") String submit
+    );
+
+    @GET("student.alerts.php")
+    Call<List<StudentAlert>> getStudentAlerts(@Query("email") String email);
+
+    @FormUrlEncoded
+    @POST("student_alerts.php")
+    Call<ApiResponse> markAlertsAsRead(
+            @Field("alert_ids") String alertIdsJson,
+            @Field("mark_read") String markReadFlag,
+            @Field("email") String email
+    );
+
+    @GET("student_alerts.php")
+    Call<List<MidtermGrade>> getStudentGrades(
+            @Query("email") String email,
+            @Query("type") String type);
+
+
+    @GET("instructor_grade.php")
+    Call<List<Section>> getInstructorSections(@Query("email")String email);
+
+    @GET("instructor_grade.php")
+    Call<List<Student>> getStudentsInSection(
+            @Query("course_id") String courseId,
+            @Query("section_id") String sectionId,
+            @Query("semester") String semester,
+            @Query("year") int year,
+            @Query("instructor_email") String instructorEmail
+    );
+    @FormUrlEncoded
+    @POST("instructor_grade.php")
+    Call<ApiResponse> submitGrades(
+            @Field("course_id") String courseId,
+            @Field("section_id") String sectionId,
+            @Field("semester") String semester,
+            @Field("year") int year,
+            @Field("grades") String gradesJson,
+            @Field("submit_grades") String submitFlag,
+            @Field("instructor_email") String instructorEmail
     );
 
     /*@FormUrlEncoded

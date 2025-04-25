@@ -76,6 +76,20 @@
             android:theme="@style/Theme.Phase3">
         </activity>
 
+        <!-- Student Alerts Activity -->
+        <activity
+            android:name=".StudentAlertsActivity"
+            android:exported="false"
+            android:label="Academic Alerts"
+            android:theme="@style/Theme.Phase3" />
+
+        <!-- Instructor Grade Activity -->
+        <activity
+            android:name=".InstructorGradeActivity"
+            android:exported="false"
+            android:label="Submit Midterm Grades"
+            android:theme="@style/Theme.Phase3" />
+
     </application>
 
 </manifest>

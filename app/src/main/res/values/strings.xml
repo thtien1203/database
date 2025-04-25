@@ -1,6 +1,6 @@
 <resources>
     <string name="app_name">phase3</string>
-    <string name="url">http://192.168.1.27/Phase3/</string>
+    <string name="url">http://192.168.0.23:80/Phase3/</string>
     <string name="student_access">Student</string>
     <string name="instructor_access">Instructor</string>
     <string name="welcome">Welcome!</string>

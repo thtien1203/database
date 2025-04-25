@@ -8,6 +8,9 @@ public class Student {
     private String department;
     private String studentType;
 
+    private String currentGrade; // added for grade submission
+
+    // constructor for registration
     public Student(String studentId, String name, String email, String password, String department, String studentType) {
         this.studentId = studentId;
         this.name = name;
@@ -15,6 +18,14 @@ public class Student {
         this.password = password;
         this.department = department;
         this.studentType = studentType;
+    }
+
+    // constructor for grade submission
+    // Constructor for grade submission
+    public Student(String studentId, String name, String currentGrade) {
+        this.studentId = studentId;
+        this.name = name;
+        this.currentGrade = currentGrade;
     }
 
     // getters and setters
@@ -60,5 +71,11 @@ public class Student {
         this.studentType = studentType;
     }
 
+    public String getCurrentGrade() {
+        return currentGrade;
+    }
+    public void setCurrentGrade(String currentGrade) {
+        this.currentGrade = currentGrade;
+    }
 
 }

@@ -1,24 +1,35 @@
 package com.example.phase3;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.ProgressBar;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.viewpager2.widget.ViewPager2;
+
+import java.util.Objects;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class StudentHomeActivity extends AppCompatActivity {
 
-    private Button courseRegistrationButton, myScheduleButton, alertsButton, studentLogoutButton;
-    private String userEmail;
+    private Button browseCoursesButton, viewCoursesButton, alertsButton, studentLogoutButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_student_home);
 
-        courseRegistrationButton = findViewById(R.id.courseRegistrationButton);
-        myScheduleButton = findViewById(R.id.myScheduleButton);
+        browseCoursesButton = findViewById(R.id.browseCoursesButton);
+        viewCoursesButton = findViewById(R.id.viewCoursesButton);
         alertsButton = findViewById(R.id.alertsButton);
         studentLogoutButton = findViewById(R.id.studentLogoutButton);
 
@@ -30,13 +41,18 @@ public class StudentHomeActivity extends AppCompatActivity {
                 openCourseRegistration();// when button is clicked
             }
         });
+        // set up onClick listeners below
+        alertsButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                openAcademicAlerts();
+            }
+        });
 
     }
 
-    private void openCourseRegistration() {
-        Intent intent = new Intent(StudentHomeActivity.this, CourseRegistrationActivity.class); // launch Course Registration screen
-        intent.putExtra("email", userEmail); // send the role depending on users choice
-        startActivity(intent); // actually run the activity
+    private void openBrowseCourses() {
+        // intent here
     }
 
     private void openViewMyCourses() {
