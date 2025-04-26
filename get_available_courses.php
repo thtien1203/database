@@ -1,18 +1,6 @@
 <?php
 include 'config.php';
 
-function createForm() {
-    echo "<h2>Get Available Courses</h2>";
-    echo "<form method='post' action='".$_SERVER['PHP_SELF']."'>";
-    echo "<table>";
-    echo "<tr><td>Semester:</td><td><input type='text' name='semester' required></td></tr>";
-    echo "<tr><td>Year:</td><td><input type='text' name='year' required></td></tr>";
-    echo "<tr><td><input type='hidden' name='submit' value='true'></td></tr>";
-    echo "<tr><td colspan='2'><input type='submit' value='Get Available Courses'></td></tr>";
-    echo "</table>";
-    echo "</form>";
-}
-
 // check if it's an API request
 $isApiRequest = isset($_SERVER['HTTP_USER_AGENT']) &&
                 (strpos($_SERVER['HTTP_USER_AGENT'], 'okhttp') !== false ||
@@ -23,9 +11,10 @@ if ($isApiRequest) {
     header('Content-Type: application/json');
 }
 
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $semester = trim($_POST["semester"]);
-    $year = trim($_POST["year"]);
+if ($_SERVER["REQUEST_METHOD"] == "GET") {
+    // Get the semester and year from query parameters
+    $semester = isset($_GET['semester']) ? trim($_GET['semester']) : null;
+    $year = isset($_GET['year']) ? trim($_GET['year']) : null;
 
     // validate input
     if (empty($semester) || empty($year)) {
@@ -41,7 +30,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     // SQL query with dynamic semester and year using prepared statement
     $sql = "SELECT 
-                s.course_id, 
+                s.course_id,
+                co.course_name,
+                co.credits,
                 s.section_id, 
                 s.semester, 
                 s.year, 
@@ -57,6 +48,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             JOIN instructor i ON s.instructor_id = i.instructor_id
             JOIN classroom c ON c.classroom_id = s.classroom_id 
             JOIN time_slot t ON t.time_slot_id = s.time_slot_id
+            JOIN course co ON co.course_id = s.course_id
             LEFT JOIN take st ON s.course_id = st.course_id 
                               AND s.section_id = st.section_id 
                               AND s.semester = st.semester 
@@ -68,7 +60,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     $stmt = $conn->prepare($sql);
     if (!$stmt) {
-        $error = "Query preparation failed: " . $conn->error;        if ($isApiRequest) {
+        $error = "Query preparation failed: " . $conn->error;
+        if ($isApiRequest) {
             echo json_encode(['success' => false, 'message' => $error]);
         } else {
             echo "<p>$error</p>";
@@ -83,7 +76,25 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     $courses = [];
     while ($row = $result->fetch_assoc()) {
-        $courses[] = $row;
+        // Map the result into an array of courses with all the required fields
+        $course = [
+            'course_id' => $row['course_id'],
+            'course_name' => $row['course_name'],
+            'semester' => $row['semester'],
+            'year' => $row['year'],
+            'section_id' => $row['section_id'],
+            'instructor_name' => $row['instructor_name'],
+            'building' => $row['building'],
+            'room_number' => $row['room_number'],
+            'day' => $row['day'],
+            'start_time' => $row['start_time'],
+            'end_time' => $row['end_time'],
+            'capacity' => $row['capacity'],
+            'students_enrolled' => $row['students_enrolled'],
+            'credits' => $row['credits']
+        ];
+
+        $courses[] = $course;
     }
 
     if ($isApiRequest) {
@@ -94,7 +105,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             echo "<p>No courses found for $semester $year.</p>";
         } else {
             echo "<table border='1' cellpadding='5' cellspacing='0'>";
-            echo "<tr><th>Course ID</th><th>Section</th><th>Instructor</th><th>Building</th><th>Room</th><th>Day</th><th>Time</th><th>Capacity</th><th>Enrolled</th></tr>";
+            echo "<tr><th>Course ID</th><th>Section</th><th>Instructor</th><th>Building</th><th>Room</th><th>Day</th><th>Time</th><th>Capacity</th><th>Enrolled</th><th>Credits</th></tr>";
             foreach ($courses as $course) {
                 echo "<tr>";
                 echo "<td>{$course['course_id']}</td>";
@@ -106,6 +117,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 echo "<td>{$course['start_time']} - {$course['end_time']}</td>";
                 echo "<td>{$course['capacity']}</td>";
                 echo "<td>{$course['students_enrolled']}</td>";
+                echo "<td>{$course['credits']}</td>";
                 echo "</tr>";
             }
             echo "</table>";
@@ -114,7 +126,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     $stmt->close();
 } else {
-    createForm();
+    echo "<h2>Get Available Courses</h2>";
+    echo "<p>Use the URL with query parameters <code>?semester=Spring&year=2025</code></p>";
 }
 
 $conn->close();

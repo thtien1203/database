@@ -24,6 +24,28 @@
             android:textStyle="bold"
             android:paddingTop="16dp"/>
 
+        <!-- Semester and Year dropdowns -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="end"
+            android:layout_marginBottom="16dp">
+
+            <!-- Semester Spinner -->
+            <Spinner
+                android:id="@+id/semesterSpinner"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="16dp" />
+
+            <!-- Year Spinner -->
+            <Spinner
+                android:id="@+id/yearSpinner"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+
         <!-- Course items will be added by the java code here -->
     </LinearLayout>
 </ScrollView>
