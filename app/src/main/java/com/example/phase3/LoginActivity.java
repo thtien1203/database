@@ -51,13 +51,31 @@ public class LoginActivity extends AppCompatActivity {
         String baseurl = getString(R.string.url);
         apiService = RetrofitClient.getApiService(baseurl);
 
-        loginButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                loginUser();
-            }
-        });
-    }
+//        loginButton.setOnClickListener(
+//            @Override
+//            public void onClick(View view) {
+//            Intent myIntent = new Intent(view.getContext(), InstructorHomeActivity.class);
+//            Toast.makeText(this, "SETTING ID FOR EMAIL: " + emailEditText.getText(), Toast.LENGTH_SHORT).show();
+//            myIntent.putExtra("email", emailEditText.getText().toString());
+//            Toast.makeText(this, "INTENT " + myIntent.getStringExtra("email"), Toast.LENGTH_SHORT).show();
+//            startActivityForResult(myIntent, 0);
+////                loginUser();
+////            }
+//        );
+
+            loginButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+//                    Intent myIntent = new Intent(view.getContext(), InstructorHomeActivity.class);
+//                    myIntent.putExtra("email", emailEditText.getText().toString());
+//                    startActivityForResult(myIntent, 0);
+                    loginUser();
+
+                }
+            });
+
+
+        }
 
     private void loginUser() {
         String email = emailEditText.getText().toString().trim();
@@ -88,7 +106,9 @@ public class LoginActivity extends AppCompatActivity {
 
                         // Navigate to the next screen based on role
                         if ("instructor".equals(role)) {
-                            startActivity(new Intent(LoginActivity.this, InstructorHomeActivity.class));
+                            Intent myIntent = new Intent(LoginActivity.this, InstructorHomeActivity.class);
+                            myIntent.putExtra("email", emailEditText.getText().toString());
+                            startActivity(myIntent);
                         } else {
                             startActivity(new Intent(LoginActivity.this, StudentHomeActivity.class));
                         }

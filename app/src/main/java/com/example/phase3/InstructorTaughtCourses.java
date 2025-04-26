@@ -1,8 +1,6 @@
  package com.example.phase3;
 
  import android.os.Bundle;
- import android.util.Log;
- import android.view.Gravity;
  import android.widget.TableLayout;
  import android.widget.TableRow;
  import android.widget.TextView;
@@ -18,7 +16,7 @@
  import retrofit2.Callback;
  import retrofit2.Response;
 
- public class InstructorSectionActivity extends AppCompatActivity {
+ public class InstructorTaughtCourses extends AppCompatActivity {
 
      private TableLayout tableLayout;
 
@@ -28,12 +26,10 @@
          setContentView(R.layout.taught_sections);
          tableLayout = findViewById(R.id.tableLayout);
 
-         ApiService apiService = RetrofitClient.getClient("http://192.168.200.17/Phase3/").create(ApiService.class);
+         ApiService apiService = RetrofitClient.getClient(getString(R.string.url)).create(ApiService.class);
 
 
          String email = getIntent().getStringExtra("email");
-         Toast.makeText(this, "Received email: " + email, Toast.LENGTH_SHORT).show();
-
 
          Call<List<InstructorSections>> call = apiService.getInstructorSections(getIntent().getStringExtra("email"));
 
@@ -43,40 +39,38 @@
                  if (response.isSuccessful() && response.body() != null) {
                      List<InstructorSections> sections = response.body();
                      for (InstructorSections section : sections) {
-                         addTableRow(section);
+                         TableRow(section);
                      }
                  } else {
-                     Log.e("API_ERROR", "Server returned error: " + response.code());
+                     Toast.makeText(InstructorTaughtCourses.this, "Server error", Toast.LENGTH_SHORT).show();
                  }
              }
 
              @Override
              public void onFailure(Call<List<InstructorSections>> call, Throwable t) {
-                 Log.e("API_FAIL", "Request failed: " + t.getMessage());
+                 Toast.makeText(InstructorTaughtCourses.this, "Failure for InstructorTaughtCourses", Toast.LENGTH_SHORT).show();
              }
          });
      }
 
-     private void addTableRow(InstructorSections section) {
+     private void TableRow(InstructorSections section) {
          TableRow row = new TableRow(this);
          row.setLayoutParams(new TableRow.LayoutParams(
                  TableRow.LayoutParams.MATCH_PARENT,
                  TableRow.LayoutParams.WRAP_CONTENT
          ));
 
-         row.addView(createCell(section.getCourse_id()));
-         row.addView(createCell(section.getSection_id()));
-         row.addView(createCell(section.getSemester()));
-         row.addView(createCell(section.getYear()));
+         row.addView(block(section.getCourse_id()));
+         row.addView(block(section.getSection_id()));
+         row.addView(block(section.getSemester()));
+         row.addView(block(section.getYear()));
 
          tableLayout.addView(row);
      }
 
-     private TextView createCell(String text) {
-         TextView cell = new TextView(this);
-         cell.setText(text);
-         cell.setPadding(8, 8, 8, 8);
-         cell.setGravity(Gravity.CENTER);
-         return cell;
+     private TextView block(String text) {
+         TextView block = new TextView(this);
+         block.setText(text);
+         return block;
      }
  }

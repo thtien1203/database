@@ -68,6 +68,26 @@
             android:theme="@style/Theme.Phase3">
         </activity>
 
+        <activity
+            android:name=".InstructorTaughtCourses"
+            android:exported="true"
+            android:label="Instructor Courses"
+            android:theme="@style/Theme.Phase3">
+        </activity>
+
+        <activity
+            android:name=".InstructorCurrentStudents"
+            android:exported="true"
+            android:label="Instructor Current Students"
+            android:theme="@style/Theme.Phase3">
+        </activity>
+        <activity
+            android:name=".InstructorPreviousStudents"
+            android:exported="true"
+            android:label="Instructor Previous Students"
+            android:theme="@style/Theme.Phase3">
+        </activity>
+
     </application>
 
 </manifest>
