@@ -20,22 +20,32 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/browseCoursesButton"
+        android:id="@+id/courseRegistrationButton"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="92dp"
-        android:text="@string/browse_available_courses"
+        android:text="@string/course_registration"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/studentWelcome" />
 
     <Button
-        android:id="@+id/viewCoursesButton"
+        android:id="@+id/myScheduleButton"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="@string/view_my_courses"
-        app:layout_constraintTop_toBottomOf="@id/browseCoursesButton"
+        android:text="@string/my_schedule"
+        app:layout_constraintTop_toBottomOf="@id/courseRegistrationButton"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="16dp" />
+
+    <Button
+        android:id="@+id/academicHistoryButton"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="@string/academic_history"
+        app:layout_constraintTop_toBottomOf="@id/myScheduleButton"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_marginTop="16dp" />
@@ -45,7 +55,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:text="@string/academic_alerts"
-        app:layout_constraintTop_toBottomOf="@id/viewCoursesButton"
+        app:layout_constraintTop_toBottomOf="@id/academicHistoryButton"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_marginTop="16dp" />

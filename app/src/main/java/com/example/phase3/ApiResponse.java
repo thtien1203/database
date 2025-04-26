@@ -3,12 +3,14 @@ package com.example.phase3;
 import com.example.phase3.model.CurrentStudentsSections;
 import com.example.phase3.model.InstructorSections;
 import com.example.phase3.model.PreviousStudentSections;
-
 import java.util.List;
 
 public class ApiResponse {
     private boolean success;
-    private String message;
+
+    private String message; // optional; may be null in a success case
+    private List<Course> courses; // optional; may be null in a failure case
+  
     private List<CurrentStudentsSections> currentstudentsections;
     private List<InstructorSections> instructorsections;
 
@@ -38,15 +40,15 @@ public class ApiResponse {
         this.currentstudentsections = currentstudentsections;
     }
 
-    public ApiResponse(boolean success, String message) {
-        this.success = success;
-        this.message = message;
-    }
     public boolean isSuccess() {
         return success;
     }
-    public  String getMessage() {
+
+    public String getMessage() {
         return message;
     }
 
+    public List<Course> getAvailableCourses() {
+        return courses;
+    }
 }

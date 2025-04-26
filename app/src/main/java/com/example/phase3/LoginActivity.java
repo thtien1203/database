@@ -88,14 +88,19 @@ public class LoginActivity extends AppCompatActivity {
                     if (apiResponse.isSuccess()) {
                         Toast.makeText(LoginActivity.this, "Login successful", Toast.LENGTH_SHORT).show();
 
-                        // Navigate to the next screen based on role
+                        // navigate to the next screen based on role
+                        Intent intent; // declare intent
                         if ("instructor".equals(role)) {
                             Intent myIntent = new Intent(LoginActivity.this, InstructorHomeActivity.class);
                             myIntent.putExtra("email", emailEditText.getText().toString());
                             startActivity(myIntent);
+                            intent = new Intent(LoginActivity.this, InstructorHomeActivity.class);
                         } else {
-                            startActivity(new Intent(LoginActivity.this, StudentHomeActivity.class));
+                            intent = new Intent(LoginActivity.this, StudentHomeActivity.class);
                         }
+                        intent.putExtra("email", email); // pass email to other screens so that student/instructor identity can be used to query
+                        intent.putExtra("role", role);
+                        startActivity(intent);
                         finish();
                     } else {
                         Toast.makeText(LoginActivity.this, apiResponse.getMessage(), Toast.LENGTH_SHORT).show();

@@ -32,7 +32,12 @@ public class InstructorHomeActivity extends AppCompatActivity {
                 openViewTaughtSections();
             }
         });
-
+        submitGradesButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                openSubmitGrades();
+            }
+        });
         currentStudentsButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -57,7 +62,8 @@ public class InstructorHomeActivity extends AppCompatActivity {
 
 
     private void openSubmitGrades() {
-        // intent here
+        Intent intent = new Intent(InstructorHomeActivity.this, InstructorGradeActivity.class);
+        startActivity(intent);
     }
 
     private void openViewCurrentStudents() {
