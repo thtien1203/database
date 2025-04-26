@@ -51,13 +51,15 @@ public class LoginActivity extends AppCompatActivity {
         String baseurl = getString(R.string.url);
         apiService = RetrofitClient.getApiService(baseurl);
 
-        loginButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                loginUser();
-            }
-        });
-    }
+            loginButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    loginUser();
+                }
+            });
+
+
+        }
 
     private void loginUser() {
         String email = emailEditText.getText().toString().trim();
@@ -89,6 +91,9 @@ public class LoginActivity extends AppCompatActivity {
                         // navigate to the next screen based on role
                         Intent intent; // declare intent
                         if ("instructor".equals(role)) {
+                            Intent myIntent = new Intent(LoginActivity.this, InstructorHomeActivity.class);
+                            myIntent.putExtra("email", emailEditText.getText().toString());
+                            startActivity(myIntent);
                             intent = new Intent(LoginActivity.this, InstructorHomeActivity.class);
                         } else {
                             intent = new Intent(LoginActivity.this, StudentHomeActivity.class);

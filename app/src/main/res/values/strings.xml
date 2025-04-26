@@ -1,6 +1,6 @@
 <resources>
     <string name="app_name">phase3</string>
-    <string name="url">http://192.168.1.27/Phase3/</string>
+    <string name="url">http://192.xxx.xxx.xx/Phase3/</string>
     <string name="student_access">Student</string>
     <string name="instructor_access">Instructor</string>
     <string name="welcome">Welcome!</string>
@@ -21,6 +21,7 @@
     <string name="academic_alerts">Academic Alerts</string>
     <string name="logout">Logout</string>
     <string name="view_current_students">View Current Students</string>
+    <string name="view_previous_students">View Previous Students</string>
     <string name="submit_midterm_grades">Submit Midterm Grades</string>
     <string name="view_taught_sections">View Taught Sections</string>
     <string name="course_registration_title">Course Registration</string>
