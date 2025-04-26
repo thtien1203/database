@@ -45,12 +45,11 @@ public interface ApiService {
     );
 
 
-    @FormUrlEncoded // format of request
-    @POST("get_available_courses.php") // the endpoint of my webserver that is recieving the request
-    Call<ApiResponse> getAvailableCourses( // the login method is called
-                               @Field("semester") String semester,
-                               @Field("year") int year, // added role parameter to allow for both student and instructor login in one page
-                               @Field("submit") String submit
+
+    @GET("get_available_courses.php")
+    Call<ApiResponse> getAvailableCourses(
+            @Query("semester") String semester,
+            @Query("year") int year
     );
 
     @GET("student.alerts.php")
@@ -70,8 +69,9 @@ public interface ApiService {
             @Query("type") String type);
 
 
-    @GET("instructor_grade.php")
-    Call<List<Section>> getInstructorSections(@Query("email")String email);
+    // commenting out to avoid errors
+    /*@GET("instructor_grade.php")
+    Call<List<Section>> getInstructorSections(@Query("email")String email);*/
 
     @GET("instructor_grade.php")
     Call<List<Student>> getStudentsInSection(
@@ -93,20 +93,15 @@ public interface ApiService {
             @Field("instructor_email") String instructorEmail
     );
 
-    /*@FormUrlEncoded
-    @POST("login_student.php")
-    Call<ApiResponse> loginStudent(
-            @Field("email") String email,
-            @Field("password") String password,
-            @Field("submit") String submit
-    );
-
     @FormUrlEncoded
-    @POST("login_instructor.php")
-    Call<ApiResponse> loginInstructor(
-            @Field("email") String email,
-            @Field("password") String password,
-            @Field("submit") String submit
+    @POST("register_for_course.php")
+    Call<ApiResponse> registerForCourse(
+            @Field("email") String userEmail,
+            @Field("course_id") String courseId,
+            @Field("section_id") String sectionId,
+            @Field("semester") String semester,
+            @Field("year") int year,
+            @Field("register") String submitFlag
     );
 */
 
@@ -126,6 +121,7 @@ public interface ApiService {
                                                                  @Query("email") String email
 
     );
+
 
 }
 

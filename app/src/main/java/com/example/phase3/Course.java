@@ -6,13 +6,14 @@ public class Course {
 
     @SerializedName("course_id")
     private String courseId;
-
+    @SerializedName("course_name")
+    private String courseName;
+    private String semester;
+    private int year;
     @SerializedName("section_id")
-    private String section;
-
+    private String sectionId;
     @SerializedName("instructor_name")
     private String instructor;
-
     private String building;
     @SerializedName("room_number")
     private String roomNumber;
@@ -24,14 +25,17 @@ public class Course {
     private int capacity;
     @SerializedName("students_enrolled")
     private int studentsEnrolled;
+    private int credits;
 
-    // Constructor
-    public Course(String courseId, String section, String instructor,
-                  String building, String roomNumber,
-                  String day, String startTime, String endTime,
-                  int capacity, int studentsEnrolled) {
+    // constructor
+    public Course(String courseId, String courseName, String semester, int year, String sectionId, String instructor,
+                  String building, String roomNumber, String day, String startTime, String endTime,
+                  int capacity, int studentsEnrolled, int credits) {
         this.courseId = courseId;
-        this.section = section;
+        this.courseName = courseName;
+        this.semester = semester;
+        this.year = year;
+        this.sectionId = sectionId;
         this.instructor = instructor;
         this.building = building;
         this.roomNumber = roomNumber;
@@ -40,6 +44,7 @@ public class Course {
         this.endTime = endTime;
         this.capacity = capacity;
         this.studentsEnrolled = studentsEnrolled;
+        this.credits = credits;
     }
 
     // Getters and Setters
@@ -52,16 +57,40 @@ public class Course {
         this.courseId = courseId;
     }
 
-    public String getSection() {
-        return section;
+    public String getCourseName() {
+        return courseName;
     }
 
-    public void setSection(String section) {
-        this.section = section;
+    public void setCourseName(String courseName) {
+        this.courseName = courseName;
+    }
+
+    public String getSemester() {
+        return semester;
+    }
+
+    public void setSemester(String semester) {
+        this.semester = semester;
+    }
+
+    public int getYear() {
+        return year;
+    }
+
+    public void setYear(int year) {
+        this.year = year;
+    }
+
+    public String getSectionId() {
+        return sectionId;
+    }
+
+    public void setSectionId(String sectionId) {
+        this.sectionId = sectionId;
     }
 
     public String getFormattedCourseSection(){
-        return courseId + " - " + section;
+        return courseId + " - " + sectionId;
     }
 
     public String getInstructor() {
@@ -129,6 +158,14 @@ public class Course {
         this.studentsEnrolled = studentsEnrolled;
     }
 
+    public int getCredits() {
+        return credits;
+    }
+
+    public void setCredits(int credits) {
+        this.credits = credits;
+    }
+
     // Convenience methods
     public String getFormattedLocation() {
         return building + " " + roomNumber;
@@ -142,7 +179,10 @@ public class Course {
     public String toString() {
         return "Course{" +
                 "courseId='" + courseId + '\'' +
-                ", section='" + section + '\'' +
+                ", courseName='" + courseName + '\'' +
+                ", semester='" + semester + '\'' +
+                ", year='" + year + '\'' +
+                ", section='" + sectionId + '\'' +
                 ", instructor='" + instructor + '\'' +
                 ", building='" + building + '\'' +
                 ", roomNumber='" + roomNumber + '\'' +
@@ -151,6 +191,7 @@ public class Course {
                 ", endTime='" + endTime + '\'' +
                 ", capacity=" + capacity +
                 ", studentsEnrolled=" + studentsEnrolled +
+                ", credits=" + credits +
                 '}';
     }
 }
