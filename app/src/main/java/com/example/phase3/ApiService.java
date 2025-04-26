@@ -1,5 +1,10 @@
 package com.example.phase3;
 
+
+import com.example.phase3.model.CurrentStudentsSections;
+import com.example.phase3.model.InstructorSections;
+import com.example.phase3.model.PreviousStudentSections;
+
 import java.util.List;
 
 import retrofit2.Call;
@@ -104,5 +109,23 @@ public interface ApiService {
             @Field("submit") String submit
     );
 */
+
+    @GET("get_instructorCourses.php")
+    Call<List<InstructorSections>> getInstructorSections(
+                                                          @Query("email") String email
+
+    );
+    @GET("get_instructorCurrentStudents.php")
+    Call<List<CurrentStudentsSections>> getInstructorCurrentStudents(
+                                                         @Query("email") String email
+
+    );
+
+    @GET("get_instructorPrevStudents.php")
+    Call<List<PreviousStudentSections>> getPreviousStudentSections(
+                                                                 @Query("email") String email
+
+    );
+
 }
 
