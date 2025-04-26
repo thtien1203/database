@@ -51,7 +51,7 @@ public interface ApiService {
     );
 */
 
-    @GET("get_students.php")
+    @GET("get_instructorCourses.php")
     Call<List<InstructorSections>> getInstructorSections(
                                                           @Query("email") String email
 
