@@ -90,12 +90,12 @@ public interface ApiService {
     @FormUrlEncoded
     @POST("register_for_course.php")
     Call<ApiResponse> registerForCourse(
-            @Field("student_email") String userEmail,
+            @Field("email") String userEmail,
             @Field("course_id") String courseId,
             @Field("section_id") String sectionId,
             @Field("semester") String semester,
             @Field("year") int year,
-            @Field("submit") String submitFlag
+            @Field("register") String submitFlag
     );
 
 }

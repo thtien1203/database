@@ -2,6 +2,7 @@ package com.example.phase3;
 
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.LinearLayout;
@@ -23,11 +24,9 @@ import retrofit2.Response;
 public class CourseRegistrationActivity extends AppCompatActivity {
 
     private LinearLayout courseListLayout;
+
+    private LinearLayout courseItemsContainer;
     private ApiService apiService;
-
-    private String semesterSelected;
-
-    private int yearSelected;
 
     private Spinner semesterSpinner;
     private Spinner yearSpinner;
@@ -40,6 +39,7 @@ public class CourseRegistrationActivity extends AppCompatActivity {
         setContentView(R.layout.activity_course_registration);
 
         courseListLayout = findViewById(R.id.courseListLayout); // parent layout to hold course items
+        courseItemsContainer = findViewById(R.id.courseItemsContainer);
         semesterSpinner = findViewById(R.id.semesterSpinner);
         yearSpinner = findViewById(R.id.yearSpinner);
 
@@ -50,8 +50,29 @@ public class CourseRegistrationActivity extends AppCompatActivity {
         setupSemester();
         setupYear();
 
-        // get courses to populate scroll view
-        getAvailableCourses();
+        semesterSpinner.setOnItemSelectedListener(new Spinner.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                getAvailableCourses(); // refresh courses when semester changes
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+                // Do nothing
+            }
+        });
+
+        yearSpinner.setOnItemSelectedListener(new Spinner.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                getAvailableCourses(); // refresh courses when year changes
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+                // Do nothing
+            }
+        });
     }
 
     private void setupSemester(){
@@ -95,7 +116,7 @@ public class CourseRegistrationActivity extends AppCompatActivity {
             public void onResponse(Call<ApiResponse> call, Response<ApiResponse> response) {
                 if (response.isSuccessful() && response.body() != null) {
                     List<Course> courseList = response.body().getAvailableCourses();
-                    displayCourses(courseList);  // Call your existing method
+                    displayCourses(courseList);
                 } else {
                     Toast.makeText(CourseRegistrationActivity.this, "Failed to fetch courses", Toast.LENGTH_SHORT).show();
                 }
@@ -111,12 +132,13 @@ public class CourseRegistrationActivity extends AppCompatActivity {
 
 
 
-    // Method to dynamically create and add a course item
+    // create and add a course item
     private void displayCourses(List<Course> courses) {
-        courseListLayout.removeAllViews(); // clear previous views if any
+        courseItemsContainer.removeAllViews(); // clear previous views if any
 
         for (Course course : courses) {
-            View courseView = getLayoutInflater().inflate(R.layout.item_course, null); // replace with your actual layout file name
+            Log.d("COURSE DEBUG:", course.toString());
+            View courseView = getLayoutInflater().inflate(R.layout.item_course, null);
 
             TextView courseName = courseView.findViewById(R.id.courseName);
             TextView courseInstructor = courseView.findViewById(R.id.courseInstructor);
@@ -124,13 +146,12 @@ public class CourseRegistrationActivity extends AppCompatActivity {
             TextView courseTiming = courseView.findViewById(R.id.courseTiming);
             Button registerButton = courseView.findViewById(R.id.registerButton);
 
-            // Populate data
             courseName.setText(course.getFormattedCourseSection());
             courseInstructor.setText(course.getInstructor());
             courseLocation.setText(course.getFormattedLocation());
             courseTiming.setText(course.getFormattedTime());
 
-            // Add onClick logic for the register button
+
             registerButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -138,30 +159,39 @@ public class CourseRegistrationActivity extends AppCompatActivity {
                 }
             });
 
-            courseListLayout.addView(courseView);
+            courseItemsContainer.addView(courseView);
         }
     }
 
 
     private void registerForCourse(Course course) {
+        Log.d("REGISTER DEBUG", course.getCourseId());
+        Log.d("REGISTER DEBUG", course.getSectionId());
+        Log.d("REGISTER DEBUG", course.getSemester());
+        Log.d("REGISTER DEBUG", String.valueOf(course.getYear()));
         Call<ApiResponse> call = apiService.registerForCourse(
                 userEmail,
                 course.getCourseId(),
                 course.getSectionId(),
-                semesterSpinner.getSelectedItem().toString(),
-                Integer.parseInt(yearSpinner.getSelectedItem().toString()),
-                "submit" // submit flag for your PHP
+                course.getSemester(),
+                course.getYear(),
+                "register"
         );
 
         call.enqueue(new Callback<ApiResponse>() {
             @Override
             public void onResponse(Call<ApiResponse> call, Response<ApiResponse> response) {
                 if (response.isSuccessful() && response.body() != null) {
-                    Toast.makeText(CourseRegistrationActivity.this,
-                            "Registered Successfully", Toast.LENGTH_SHORT).show();
+                    if (response.body().isSuccess()) {
+                        Toast.makeText(CourseRegistrationActivity.this,
+                                "Registered Successfully", Toast.LENGTH_SHORT).show();
+                    } else {
+                        Toast.makeText(CourseRegistrationActivity.this,
+                                "Registration Failed: " + response.body().getMessage(), Toast.LENGTH_SHORT).show();
+                    }
                 } else {
                     Toast.makeText(CourseRegistrationActivity.this,
-                            "Registration Failed", Toast.LENGTH_SHORT).show();
+                            "Registration Failed: Server error", Toast.LENGTH_SHORT).show();
                 }
             }
 

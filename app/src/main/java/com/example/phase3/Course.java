@@ -27,7 +27,7 @@ public class Course {
     private int studentsEnrolled;
     private int credits;
 
-    // Constructor
+    // constructor
     public Course(String courseId, String courseName, String semester, int year, String sectionId, String instructor,
                   String building, String roomNumber, String day, String startTime, String endTime,
                   int capacity, int studentsEnrolled, int credits) {

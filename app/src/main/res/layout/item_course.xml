@@ -7,7 +7,6 @@
     android:layout_marginBottom="8dp"
     android:background="@android:color/white">
 
-    <!-- Line 1: Course Name + Section -->
     <TextView
         android:id="@+id/courseName"
         android:layout_width="0dp"
@@ -21,7 +20,6 @@
         app:layout_constraintEnd_toStartOf="@id/courseInstructor"
         android:layout_marginEnd="8dp" />
 
-    <!-- Line 1: Instructor aligned to end -->
     <TextView
         android:id="@+id/courseInstructor"
         android:layout_width="wrap_content"
@@ -32,7 +30,6 @@
         app:layout_constraintTop_toTopOf="@id/courseName"
         app:layout_constraintEnd_toEndOf="parent" />
 
-    <!-- Register Button below Instructor -->
     <Button
         android:id="@+id/registerButton"
         android:layout_width="wrap_content"
@@ -44,7 +41,6 @@
         app:layout_constraintEnd_toEndOf="@id/courseInstructor"
         android:layout_marginTop="4dp" />
 
-    <!-- Line 2: Location full width -->
     <TextView
         android:id="@+id/courseLocation"
         android:layout_width="0dp"
@@ -58,7 +54,6 @@
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp" />
 
-    <!-- Line 3: Timing full width -->
     <TextView
         android:id="@+id/courseTiming"
         android:layout_width="0dp"

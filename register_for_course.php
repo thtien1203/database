@@ -63,7 +63,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && (isset($_POST['register']) || $isAp
     $stmt->close();
 
     // Step 2: Check if student is already registered for the course and section
-    $stmt_check_registration = $conn->prepare("SELECT * FROM take WHERE student_id = ? AND course_id = ? AND section_id = ? AND semester = ? AND year = ?");
+    $stmt_check_registration = $conn->prepare("SELECT * FROM take WHERE student_id = ? AND course_id = ? AND semester = ? AND year = ?");
     $stmt_check_registration->bind_param("issss", $student_id, $course_id, $section_id, $semester, $year);
     $stmt_check_registration->execute();
     $result_check_registration = $stmt_check_registration->get_result();
