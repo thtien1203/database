@@ -103,6 +103,13 @@
             android:theme="@style/Theme.Phase3">
         </activity>
 
+        <activity
+            android:name=".StudentScheduleActivity"
+            android:exported="true"
+            android:label="My Schedule"
+            android:theme="@style/Theme.Phase3">
+        </activity>
+
         <!-- Student Alerts Activity -->
         <activity
             android:name=".StudentAlertsActivity"

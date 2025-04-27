@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/scrollView"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp"
+    android:background="#FFFFFF">
+
+    <LinearLayout
+        android:id="@+id/studentScheduleLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/studentScheduleTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/student_schedule_title"
+            android:textSize="24sp"
+            android:textColor="#000000"
+            android:gravity="center"
+            android:textStyle="bold"
+            android:paddingBottom="16dp"
+            android:paddingTop="16dp" />
+
+        <!-- Schedule items added in code -->
+        <LinearLayout
+            android:id="@+id/studentScheduleContainer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" />
+
+    </LinearLayout>
+
+</ScrollView>

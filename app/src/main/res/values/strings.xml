@@ -28,4 +28,5 @@
     <string name="academic_history_title">Academic History</string>
     <string name="gpa_label">GPA:</string>
     <string name="total_credits_label">Total Credits:</string>
+    <string name="student_schedule_title">My Schedule</string>
 </resources>

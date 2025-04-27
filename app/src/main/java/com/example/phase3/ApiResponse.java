@@ -15,7 +15,7 @@ public class ApiResponse {
     // optional parameters required for registration, academic history and schedule
     private List<Course> courses; // optional; may be null in a failure case
     private List<Grade> grades;
-
+    private List<Course> schedule;
     private List<CurrentStudentsSections> currentstudentsections;
     private List<InstructorSections> instructorsections;
 
@@ -55,11 +55,9 @@ public class ApiResponse {
     public String getMessage() {
         return message;
     }
-    public List<Course> getAvailableCourses() {
-        return courses;
-    }
+    public List<Course> getAvailableCourses() { return courses; }
     public List<Grade> getAcademicHistory() {return grades; }
-
+    public List<Course> getStudentSchedule() {return schedule; }
     public int getTotalCredits() { return totalCredits; }
 
     public double getGpa() { return gpa; }
