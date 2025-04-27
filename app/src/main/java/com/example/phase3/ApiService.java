@@ -52,7 +52,7 @@ public interface ApiService {
             @Query("year") int year
     );
 
-    @GET("student.alerts.php")
+    @GET("student_alerts.php")
     Call<List<StudentAlert>> getStudentAlerts(@Query("email") String email);
 
     @FormUrlEncoded
@@ -70,8 +70,8 @@ public interface ApiService {
 
 
     // commenting out to avoid errors
-    /*@GET("instructor_grade.php")
-    Call<List<Section>> getInstructorSections(@Query("email")String email);*/
+    @GET("instructor_grade.php")
+    Call<List<Section>> getInstructorSectionss(@Query("email")String email);
 
     @GET("instructor_grade.php")
     Call<List<Student>> getStudentsInSection(
@@ -103,7 +103,7 @@ public interface ApiService {
             @Field("year") int year,
             @Field("register") String submitFlag
     );
-*/
+
 
     @GET("get_instructorCourses.php")
     Call<List<InstructorSections>> getInstructorSections(

@@ -50,7 +50,13 @@ public class InstructorGradeActivity extends AppCompatActivity{
         noSectionsTextView = findViewById(R.id.noSectionsTextView);
 
         // get instructor email from shared preferences
-        instructorEmail = getSharedPreferences("UserPrefs", MODE_PRIVATE).getString("email", "");
+//        instructorEmail = getSharedPreferences("UserPrefs", MODE_PRIVATE).getString("email", "");
+        instructorEmail = getIntent().getStringExtra("email");
+//        if (instructorEmail == null || instructorEmail.isEmpty()) {
+//            instructorEmail = getSharedPreferences("UserPrefs", MODE_PRIVATE)
+//                    .getString("email", "");
+//        }
+
         String baseUrl = getString(R.string.url);
         apiService = RetrofitClient.getApiService(baseUrl);
 
@@ -89,7 +95,7 @@ public class InstructorGradeActivity extends AppCompatActivity{
 
     private void loadSections() {
         progressBar.setVisibility(View.VISIBLE);
-        Call<List<Section>> call = apiService.getInstructorSections(instructorEmail);
+        Call<List<Section>> call = apiService.getInstructorSectionss(instructorEmail);
         call.enqueue(new Callback<List<Section>>() {
             @Override
             public void onResponse(Call<List<Section>> call, Response<List<Section>> response) {
