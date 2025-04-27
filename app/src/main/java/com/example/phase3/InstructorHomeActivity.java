@@ -28,8 +28,10 @@ public class InstructorHomeActivity extends AppCompatActivity {
         // set up onClick listeners below
         viewSectionsButton.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
-                openViewTaughtSections();
+            public void onClick(View v) {
+                Intent intent = new Intent(InstructorHomeActivity.this, InstructorGradeActivity.class);
+                intent.putExtra("email", email); // pass the email
+                startActivity(intent);
             }
         });
         submitGradesButton.setOnClickListener(new View.OnClickListener() {
@@ -63,6 +65,7 @@ public class InstructorHomeActivity extends AppCompatActivity {
 
     private void openSubmitGrades() {
         Intent intent = new Intent(InstructorHomeActivity.this, InstructorGradeActivity.class);
+        intent.putExtra("email", email);
         startActivity(intent);
     }
 

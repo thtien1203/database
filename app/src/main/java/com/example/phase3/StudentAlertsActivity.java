@@ -66,6 +66,7 @@ public class StudentAlertsActivity extends AppCompatActivity {
         gradesTab.setContent(R.id.gradesTab);
         tabHost.addTab(gradesTab);
 
+        studentEmail = getIntent().getStringExtra("email");
         // initialize api service
         String baseUrl = getString(R.string.url);
         apiService = RetrofitClient.getApiService(baseUrl);

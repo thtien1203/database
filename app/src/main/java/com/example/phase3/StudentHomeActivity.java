@@ -49,7 +49,9 @@ public class StudentHomeActivity extends AppCompatActivity {
         alertsButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                openAcademicAlerts();
+                Intent intent = new Intent(StudentHomeActivity.this, StudentAlertsActivity.class);
+                intent.putExtra("email", userEmail); // pass the email
+                startActivity(intent);
             }
         });
 
@@ -78,6 +80,7 @@ public class StudentHomeActivity extends AppCompatActivity {
 
     private void openAcademicAlerts() {
         Intent intent = new Intent(StudentHomeActivity.this, StudentAlertsActivity.class);
+        intent.putExtra("email", userEmail); // to pass the email
         startActivity(intent);
     }
 
