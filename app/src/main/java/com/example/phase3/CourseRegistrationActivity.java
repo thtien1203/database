@@ -141,6 +141,7 @@ public class CourseRegistrationActivity extends AppCompatActivity {
             View courseView = getLayoutInflater().inflate(R.layout.item_course, null);
 
             TextView courseName = courseView.findViewById(R.id.courseName);
+            TextView courseIdSection = courseView.findViewById(R.id.courseIdSection);
             TextView courseInstructor = courseView.findViewById(R.id.courseInstructor);
             TextView courseLocation = courseView.findViewById(R.id.courseLocation);
             TextView courseTiming = courseView.findViewById(R.id.courseTiming);
@@ -149,7 +150,9 @@ public class CourseRegistrationActivity extends AppCompatActivity {
             courseName.setText(course.getFormattedCourseSection());
             courseInstructor.setText(course.getInstructor());
             courseLocation.setText(course.getFormattedLocation());
-            courseTiming.setText(course.getFormattedTime());
+            courseTiming.setText(course.getFormattedDayAndTime());
+            courseIdSection.setText(course.getFormattedCourseSection());
+
 
 
             registerButton.setOnClickListener(new View.OnClickListener() {

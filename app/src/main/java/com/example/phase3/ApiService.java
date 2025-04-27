@@ -130,5 +130,13 @@ public interface ApiService {
             @Query("year") int year
     );
 
+    @GET("get_student_schedule.php")
+    Call<ApiResponse> getStudentSchedule(
+            @Query("email") String userEmail,
+            @Query("semester") String semester,
+            @Query("year") int year
+    );
+
+
 }
 

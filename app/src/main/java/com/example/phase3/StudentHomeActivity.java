@@ -21,7 +21,7 @@ import retrofit2.Response;
 
 public class StudentHomeActivity extends AppCompatActivity {
 
-    private Button courseRegistrationButton, academicHistoryButton, alertsButton, studentLogoutButton;
+    private Button courseRegistrationButton, academicHistoryButton, myScheduleButton, alertsButton, studentLogoutButton;
 
     private String userEmail;
 
@@ -35,6 +35,8 @@ public class StudentHomeActivity extends AppCompatActivity {
         studentLogoutButton = findViewById(R.id.studentLogoutButton);
         courseRegistrationButton = findViewById(R.id.courseRegistrationButton);
         academicHistoryButton = findViewById(R.id.academicHistoryButton);
+        myScheduleButton = findViewById(R.id.myScheduleButton);
+
 
 
         userEmail = getIntent().getStringExtra("email");
@@ -60,27 +62,34 @@ public class StudentHomeActivity extends AppCompatActivity {
             public void onClick(View v) {openAcademicHistory();}
         });
 
+        myScheduleButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {openMySchedule();}
+        });
+
     }
 
     private void openCourseRegistration() {
         Intent intent = new Intent(StudentHomeActivity.this, CourseRegistrationActivity.class);
-        intent.putExtra("email", userEmail); // pass user email to the next activity
+        intent.putExtra("email", userEmail);
         startActivity(intent);
     }
 
     private void openMySchedule() {
-        // intent here
+        Intent intent = new Intent(StudentHomeActivity.this, StudentScheduleActivity.class);
+        intent.putExtra("email", userEmail);
+        startActivity(intent);
     }
 
     private void openAcademicHistory(){
         Intent intent = new Intent(StudentHomeActivity.this, StudentAcademicHistoryActivity.class);
-        intent.putExtra("email", userEmail); // pass user email to the next activity
+        intent.putExtra("email", userEmail);
         startActivity(intent);
     }
 
     private void openAcademicAlerts() {
         Intent intent = new Intent(StudentHomeActivity.this, StudentAlertsActivity.class);
-        intent.putExtra("email", userEmail); // to pass the email
+        intent.putExtra("email", userEmail);
         startActivity(intent);
     }
 

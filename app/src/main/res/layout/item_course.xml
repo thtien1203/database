@@ -7,39 +7,63 @@
     android:layout_marginBottom="8dp"
     android:background="@android:color/white">
 
-    <TextView
-        android:id="@+id/courseName"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:text="Intro to CS - A1"
-        android:textSize="18sp"
-        android:textStyle="bold"
-        android:textColor="#000000"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toStartOf="@id/courseInstructor"
-        android:layout_marginEnd="8dp" />
 
-    <TextView
-        android:id="@+id/courseInstructor"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Dr. Smith"
-        android:textColor="#000000"
-        android:textSize="16sp"
-        app:layout_constraintTop_toTopOf="@id/courseName"
-        app:layout_constraintEnd_toEndOf="parent" />
 
     <Button
         android:id="@+id/registerButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="36dp"
+        android:layout_marginEnd="8dp"
+        android:backgroundTint="@color/colorPrimary"
         android:text="Register"
         android:textColor="#FFFFFF"
-        android:backgroundTint="#2196F3"
-        app:layout_constraintTop_toBottomOf="@id/courseInstructor"
-        app:layout_constraintEnd_toEndOf="@id/courseInstructor"
-        android:layout_marginTop="4dp" />
+        app:layout_constraintBottom_toBottomOf="@id/courseTiming"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@id/courseIdSection"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <TextView
+        android:id="@+id/courseIdSection"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="CS101 - A1"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        android:textColor="@color/colorPrimary"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/registerButton"
+        android:layout_marginEnd="8dp" />
+
+
+    <TextView
+        android:id="@+id/courseName"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Introduction to Computer Science"
+        android:textSize="16sp"
+        android:textColor="#000000"
+        app:layout_constraintTop_toBottomOf="@id/courseIdSection"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/registerButton"
+        android:layout_marginTop="4dp"
+        android:layout_marginEnd="8dp" />
+
+
+    <TextView
+        android:id="@+id/courseInstructor"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Dr. Smith"
+        android:textSize="14sp"
+        android:textColor="#666666"
+        app:layout_constraintTop_toBottomOf="@id/courseName"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/registerButton"
+        android:layout_marginTop="4dp"
+        android:layout_marginEnd="8dp" />
+
 
     <TextView
         android:id="@+id/courseLocation"
@@ -48,11 +72,12 @@
         android:text="Science Hall, Room 203"
         android:textSize="14sp"
         android:textColor="#666666"
-        app:layout_constraintTop_toBottomOf="@id/courseName"
+        app:layout_constraintTop_toBottomOf="@id/courseInstructor"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toStartOf="@id/registerButton"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="4dp"
         android:layout_marginEnd="8dp" />
+
 
     <TextView
         android:id="@+id/courseTiming"

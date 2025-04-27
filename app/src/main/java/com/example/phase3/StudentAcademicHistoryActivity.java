@@ -161,6 +161,7 @@ public class StudentAcademicHistoryActivity extends AppCompatActivity {
             courseName.setText(course.getCourseName());
             courseInstructor.setText(course.getInstructor());
 
+
             academicHistoryContainer.addView(gradeView);
         }
     }

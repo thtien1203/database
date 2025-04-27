@@ -1,6 +1,9 @@
 package com.example.phase3;
 
 import com.google.gson.annotations.SerializedName;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 public class Course {
 
@@ -47,7 +50,6 @@ public class Course {
         this.credits = credits;
     }
 
-    // Getters and Setters
 
     public String getCourseId() {
         return courseId;
@@ -171,8 +173,31 @@ public class Course {
         return building + " " + roomNumber;
     }
 
-    public String getFormattedTime() {
-        return day + " " + startTime + " - " + endTime;
+    public String getFormattedDayAndTime() {
+        return day + " " + formatTime(startTime) + "-" + formatTime(endTime);
+    }
+
+    public String formatTime(String time) {
+        SimpleDateFormat inputFormat = new SimpleDateFormat("HH:mm:ss");  // military time
+        SimpleDateFormat outputFormat = new SimpleDateFormat("hh:mm a");  // 12-hour with AM and PM
+        try {
+            Date date = inputFormat.parse(time);  // throws ParseException so must be handled
+            return outputFormat.format(date);
+        } catch (ParseException e) {
+            return time;  // default to original time
+        }
+    }
+
+    public String getFormattedStartTime() {
+        return formatTime(startTime);
+    }
+
+    public String getFormattedEndTime() {
+        return formatTime(endTime);
+    }
+
+    public String getFormattedTiming() {
+        return formatTime(startTime) + "-" + formatTime(endTime);
     }
 
     @Override
