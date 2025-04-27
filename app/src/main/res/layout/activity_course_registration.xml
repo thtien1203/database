@@ -24,7 +24,6 @@
             android:textStyle="bold"
             android:paddingTop="16dp"/>
 
-        <!-- Semester and Year dropdowns -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -43,6 +42,19 @@
                 android:layout_width="wrap_content"
                 android:layout_height="48dp" />
         </LinearLayout>
+
+        <TextView
+            android:id="@+id/noCoursesMessage"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="No courses for the selected semester and year."
+            android:textSize="18sp"
+            android:textColor="#666666"
+            android:gravity="center"
+
+            android:visibility="gone" /> <!-- Initially hidden -->
+
+        <!-- Container for the course items (dynamic) -->
         <LinearLayout
             android:id="@+id/courseItemsContainer"
             android:layout_width="match_parent"
