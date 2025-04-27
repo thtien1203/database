@@ -94,7 +94,7 @@ public interface ApiService {
     );
 
     @FormUrlEncoded
-    @POST("register_for_course.php")
+    @POST("register_for_course_og.php")
     Call<ApiResponse> registerForCourse(
             @Field("email") String userEmail,
             @Field("course_id") String courseId,
@@ -122,6 +122,13 @@ public interface ApiService {
 
     );
 
+
+    @GET("get_academic_history.php")
+    Call<ApiResponse> getStudentAcademicHistory(
+            @Query("email") String userEmail,
+            @Query("semester") String semester,
+            @Query("year") int year
+    );
 
 }
 
