@@ -91,10 +91,10 @@ public class CourseRegistrationActivity extends AppCompatActivity {
 
     private void setupYear(){
         List<String> years = new ArrayList<>(Arrays.asList(
-                "2023",
-                "2024",
-                "2025",
-                "2026"
+                //"2023", // was removed, in past
+                //"2024", // was removed, in past
+                "2025", // only fall should be in DB, dont include spring 2025 in DB
+                "2026" // keep
         ));
         ArrayAdapter<String> adapter = new ArrayAdapter<>(
                 this,
@@ -135,12 +135,12 @@ public class CourseRegistrationActivity extends AppCompatActivity {
     // create and add a course item
     private void displayCourses(List<Course> courses) {
         courseItemsContainer.removeAllViews(); // clear previous views if any
-        TextView noCoursesMessage = findViewById(R.id.noCoursesMessage); // Find the "No courses" message TextView
+        TextView noCoursesMessage = findViewById(R.id.noCoursesMessage); // get message for empty
 
         if (courses.isEmpty()) {
-            noCoursesMessage.setVisibility(View.VISIBLE); // Show the "No courses" message if no courses are available
+            noCoursesMessage.setVisibility(View.VISIBLE); // show if no courses
         } else {
-            noCoursesMessage.setVisibility(View.GONE); // Hide the "No courses" message if courses are available
+            noCoursesMessage.setVisibility(View.GONE); // hide if courses
             for (Course course : courses) {
                 Log.d("COURSE DEBUG:", course.toString());
                 View courseView = getLayoutInflater().inflate(R.layout.item_course, null);

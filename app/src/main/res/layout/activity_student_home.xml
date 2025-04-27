@@ -11,7 +11,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="108dp"
-        android:text="@string/welcome"
+        android:text="@string/welcome_student"
+        android:textColor="@color/colorPrimary"
         android:textSize="30sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
@@ -51,10 +52,10 @@
         android:layout_marginTop="16dp" />
 
     <Button
-        android:id="@+id/alertsButton"
+        android:id="@+id/gradesAndAlertsButton"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="@string/academic_alerts"
+        android:text="@string/grades_amp_alerts"
         app:layout_constraintTop_toBottomOf="@id/academicHistoryButton"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -66,7 +67,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:text="@string/logout"
-        app:layout_constraintTop_toBottomOf="@id/alertsButton"
+        app:layout_constraintTop_toBottomOf="@id/gradesAndAlertsButton"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_marginTop="32dp" />

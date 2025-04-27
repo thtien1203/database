@@ -29,7 +29,7 @@ public class InstructorHomeActivity extends AppCompatActivity {
         viewSectionsButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(InstructorHomeActivity.this, InstructorGradeActivity.class);
+                Intent intent = new Intent(InstructorHomeActivity.this, InstructorTaughtCourses.class);
                 intent.putExtra("email", email); // pass the email
                 startActivity(intent);
             }

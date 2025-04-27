@@ -4,33 +4,50 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <TableLayout
-        android:id="@+id/tableLayout"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:stretchColumns="*"
+        android:orientation="vertical"
         android:padding="16dp">
 
-        <!-- Table Header -->
-        <TableRow>
-            <TextView
-                android:text="Course ID"
-                android:textStyle="bold"
-                android:padding="8dp"/>
-            <TextView
-                android:text="Section_ID"
-                android:textStyle="bold"
-                android:padding="8dp"/>
-            <TextView
-                android:text="Student_Name"
-                android:textStyle="bold"
-                android:padding="8dp"/>
+        <TextView
+            android:id="@+id/currentStudentsTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/current_students"
+            android:textSize="24sp"
+            android:textColor="#000000"
+            android:gravity="center"
+            android:textStyle="bold"
+            android:paddingBottom="16dp"
+            android:paddingTop="16dp" />
 
-        </TableRow>
+        <TableLayout
+            android:id="@+id/tableLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:stretchColumns="*"
+            android:padding="16dp">
 
-    </TableLayout>
+            <!-- Table Header -->
+            <TableRow>
+                <TextView
+                    android:text="Course ID"
+                    android:textStyle="bold"
+                    android:padding="8dp"/>
+                <TextView
+                    android:text="Section ID"
+                    android:textStyle="bold"
+                    android:padding="8dp"/>
+                <TextView
+                    android:text="Student Name"
+                    android:textStyle="bold"
+                    android:padding="8dp"/>
+            </TableRow>
+
+            <!-- rows added in code -->
+        </TableLayout>
+
+    </LinearLayout>
+
 </ScrollView>
-
-
-
-

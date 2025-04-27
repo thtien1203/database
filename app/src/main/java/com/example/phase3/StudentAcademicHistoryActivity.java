@@ -97,7 +97,7 @@ public class StudentAcademicHistoryActivity extends AppCompatActivity {
         List<String> years = new ArrayList<>(Arrays.asList(
                 "2023",
                 "2024",
-                "2025"
+                "2025" // only populate fall
         ));
         ArrayAdapter<String> adapter = new ArrayAdapter<>(
                 this,
@@ -146,15 +146,13 @@ public class StudentAcademicHistoryActivity extends AppCompatActivity {
         academicHistoryContainer.removeAllViews(); // clear previous views
 
         if (grades == null || grades.isEmpty()) {
-            // Show the "No courses" message and hide the course list
+
             findViewById(R.id.noCoursesMessage).setVisibility(View.VISIBLE);
             academicHistoryContainer.setVisibility(View.GONE);
         } else {
-            // Hide the "No courses" message and show the course list
             findViewById(R.id.noCoursesMessage).setVisibility(View.GONE);
             academicHistoryContainer.setVisibility(View.VISIBLE);
 
-            // Populate the academic history with course items
             for (Grade grade : grades) {
                 Log.d("GRADE", grade.toString());
                 View gradeView = getLayoutInflater().inflate(R.layout.item_student_history, null);

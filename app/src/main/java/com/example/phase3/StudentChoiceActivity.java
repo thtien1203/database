@@ -25,7 +25,7 @@ public class StudentChoiceActivity extends AppCompatActivity {
         });
 
         createAccountButton.setOnClickListener(view -> {
-            Intent intent = new Intent(StudentChoiceActivity.this, studentRegister.class); // rename to CreateStudentAccountActivity
+            Intent intent = new Intent(StudentChoiceActivity.this, CreateStudentAccountActivity.class); // rename to CreateStudentAccountActivity
             startActivity(intent);
         });
 
