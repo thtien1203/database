@@ -17,7 +17,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class studentRegister extends AppCompatActivity {
+public class CreateStudentAccountActivity extends AppCompatActivity {
     private EditText studentIdEditText, nameEditText, emailEditText, passwordEditText;
     private Spinner departmentS, studentTypeS;
     private Button createAccountButton;
@@ -27,7 +27,7 @@ public class studentRegister extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle saveState) {
         super.onCreate(saveState);
-        setContentView(R.layout.student_register);
+        setContentView(R.layout.activity_create_student_account);
 
         studentIdEditText = findViewById(R.id.studentIdEditText);
         nameEditText = findViewById(R.id.nameEditText);
@@ -124,21 +124,21 @@ public class studentRegister extends AppCompatActivity {
                     ApiResponse apiResponse = response.body();
                     if (apiResponse.isSuccess()) {
                         Toast.makeText(
-                                studentRegister.this,
+                                CreateStudentAccountActivity.this,
                                 "Account created successfully",
                                 Toast.LENGTH_SHORT
                         ).show();;
                         finish();;
                     } else {
                         Toast.makeText(
-                                studentRegister.this,
+                                CreateStudentAccountActivity.this,
                                 apiResponse.getMessage(),
                                 Toast.LENGTH_SHORT
                         ).show();
                     }
                 } else {
                     Toast.makeText(
-                            studentRegister.this,
+                            CreateStudentAccountActivity.this,
                             "Failed to create account",
                             Toast.LENGTH_SHORT
                     ).show();
@@ -150,7 +150,7 @@ public class studentRegister extends AppCompatActivity {
                 progressBar.setVisibility(View.GONE);
                 createAccountButton.setEnabled(true);
                 Toast.makeText(
-                        studentRegister.this,
+                        CreateStudentAccountActivity.this,
                         "Network error: " + t.getMessage(),
                         Toast.LENGTH_SHORT
                 ).show();

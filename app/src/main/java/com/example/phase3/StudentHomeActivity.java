@@ -1,23 +1,11 @@
 package com.example.phase3;
 
-import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
-import android.widget.ProgressBar;
-import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.viewpager2.widget.ViewPager2;
-
-import java.util.Objects;
-
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
 
 public class StudentHomeActivity extends AppCompatActivity {
 
@@ -31,7 +19,7 @@ public class StudentHomeActivity extends AppCompatActivity {
         setContentView(R.layout.activity_student_home);
 
 
-        alertsButton = findViewById(R.id.alertsButton);
+        alertsButton = findViewById(R.id.gradesAndAlertsButton);
         studentLogoutButton = findViewById(R.id.studentLogoutButton);
         courseRegistrationButton = findViewById(R.id.courseRegistrationButton);
         academicHistoryButton = findViewById(R.id.academicHistoryButton);

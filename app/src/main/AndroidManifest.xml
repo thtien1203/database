@@ -30,7 +30,7 @@
 
         <!-- Student Register Activity - This is another screen -->
         <activity
-            android:name=".studentRegister"
+            android:name=".CreateStudentAccountActivity"
             android:exported="true"
             android:label="Student Register"
             android:theme="@style/Theme.Phase3">

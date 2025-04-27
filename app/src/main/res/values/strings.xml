@@ -14,7 +14,7 @@
     <string name="student_login">Student Login</string>
     <string name="create_account">Create Account</string>
     <string name="log_in">Log In</string>
-    <string name="welcome_student">Welcome Student</string>
+    <string name="welcome_student">Welcome, Student!</string>
     <string name="course_registration">Course Registration</string>
     <string name="my_schedule">My Schedule</string>
     <string name="academic_history">Academic History</string>
@@ -30,4 +30,9 @@
     <string name="total_credits_label">Total Credits:</string>
     <string name="student_schedule_title">My Schedule</string>
     <string name="no_courses_for_the_selected_semester_and_year">No courses for the selected semester and year.</string>
+    <string name="welcome_instructor">Welcome, Instructor!</string>
+    <string name="current_students">Current Students</string>
+    <string name="create_student_account">Create Student Account</string>
+    <string name="taught_sections">Taught Sections</string>
+    <string name="grades_amp_alerts"><![CDATA[Grades & Alerts]]></string>
 </resources>
