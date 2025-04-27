@@ -21,7 +21,7 @@ import retrofit2.Response;
 
 public class StudentHomeActivity extends AppCompatActivity {
 
-    private Button courseRegistrationButton, viewCoursesButton, alertsButton, studentLogoutButton;
+    private Button courseRegistrationButton, academicHistoryButton, alertsButton, studentLogoutButton;
 
     private String userEmail;
 
@@ -34,6 +34,8 @@ public class StudentHomeActivity extends AppCompatActivity {
         alertsButton = findViewById(R.id.alertsButton);
         studentLogoutButton = findViewById(R.id.studentLogoutButton);
         courseRegistrationButton = findViewById(R.id.courseRegistrationButton);
+        academicHistoryButton = findViewById(R.id.academicHistoryButton);
+
 
         userEmail = getIntent().getStringExtra("email");
 
@@ -51,6 +53,11 @@ public class StudentHomeActivity extends AppCompatActivity {
             }
         });
 
+        academicHistoryButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {openAcademicHistory();}
+        });
+
     }
 
     private void openCourseRegistration() {
@@ -59,8 +66,14 @@ public class StudentHomeActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-    private void openViewMyCourses() {
+    private void openMySchedule() {
         // intent here
+    }
+
+    private void openAcademicHistory(){
+        Intent intent = new Intent(StudentHomeActivity.this, StudentAcademicHistoryActivity.class);
+        intent.putExtra("email", userEmail); // pass user email to the next activity
+        startActivity(intent);
     }
 
     private void openAcademicAlerts() {

@@ -24,4 +24,7 @@
     <string name="submit_midterm_grades">Submit Midterm Grades</string>
     <string name="view_taught_sections">View Taught Sections</string>
     <string name="course_registration_title">Course Registration</string>
+    <string name="academic_history_title">Academic History</string>
+    <string name="gpa_label">GPA:</string>
+    <string name="total_credits_label">Total Credits:</string>
 </resources>

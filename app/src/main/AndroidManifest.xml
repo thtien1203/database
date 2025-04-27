@@ -76,6 +76,14 @@
             android:theme="@style/Theme.Phase3">
         </activity>
 
+        <!-- Student Academic History Activity -->
+        <activity
+            android:name=".StudentAcademicHistoryActivity"
+            android:exported="true"
+            android:label="Academic History"
+            android:theme="@style/Theme.Phase3">
+        </activity>
+
         <!-- Student Alerts Activity -->
         <activity
             android:name=".StudentAlertsActivity"
