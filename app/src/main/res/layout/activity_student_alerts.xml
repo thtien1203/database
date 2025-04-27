@@ -63,7 +63,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:gravity="center"
-                        android:text="No academic alerts found"
+                        android:text="No academic alerts found."
                         android:textSize="18sp"
                         android:visibility="gone"/>
 
@@ -86,7 +86,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:gravity="center"
-                        android:text="No midterm grades founds"
+                        android:text="No midterm grades found."
                         android:textSize="18sp"
                         android:visibility="gone" />
 

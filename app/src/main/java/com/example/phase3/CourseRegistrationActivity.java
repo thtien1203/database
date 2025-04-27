@@ -135,34 +135,38 @@ public class CourseRegistrationActivity extends AppCompatActivity {
     // create and add a course item
     private void displayCourses(List<Course> courses) {
         courseItemsContainer.removeAllViews(); // clear previous views if any
+        TextView noCoursesMessage = findViewById(R.id.noCoursesMessage); // Find the "No courses" message TextView
 
-        for (Course course : courses) {
-            Log.d("COURSE DEBUG:", course.toString());
-            View courseView = getLayoutInflater().inflate(R.layout.item_course, null);
+        if (courses.isEmpty()) {
+            noCoursesMessage.setVisibility(View.VISIBLE); // Show the "No courses" message if no courses are available
+        } else {
+            noCoursesMessage.setVisibility(View.GONE); // Hide the "No courses" message if courses are available
+            for (Course course : courses) {
+                Log.d("COURSE DEBUG:", course.toString());
+                View courseView = getLayoutInflater().inflate(R.layout.item_course, null);
 
-            TextView courseName = courseView.findViewById(R.id.courseName);
-            TextView courseIdSection = courseView.findViewById(R.id.courseIdSection);
-            TextView courseInstructor = courseView.findViewById(R.id.courseInstructor);
-            TextView courseLocation = courseView.findViewById(R.id.courseLocation);
-            TextView courseTiming = courseView.findViewById(R.id.courseTiming);
-            Button registerButton = courseView.findViewById(R.id.registerButton);
+                TextView courseName = courseView.findViewById(R.id.courseName);
+                TextView courseIdSection = courseView.findViewById(R.id.courseIdSection);
+                TextView courseInstructor = courseView.findViewById(R.id.courseInstructor);
+                TextView courseLocation = courseView.findViewById(R.id.courseLocation);
+                TextView courseTiming = courseView.findViewById(R.id.courseTiming);
+                Button registerButton = courseView.findViewById(R.id.registerButton);
 
-            courseName.setText(course.getFormattedCourseSection());
-            courseInstructor.setText(course.getInstructor());
-            courseLocation.setText(course.getFormattedLocation());
-            courseTiming.setText(course.getFormattedDayAndTime());
-            courseIdSection.setText(course.getFormattedCourseSection());
+                courseName.setText(course.getCourseName());
+                courseInstructor.setText(course.getInstructor());
+                courseLocation.setText(course.getFormattedLocation());
+                courseTiming.setText(course.getFormattedDayAndTime());
+                courseIdSection.setText(course.getFormattedCourseSection());
 
+                registerButton.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        registerForCourse(course);
+                    }
+                });
 
-
-            registerButton.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    registerForCourse(course);
-                }
-            });
-
-            courseItemsContainer.addView(courseView);
+                courseItemsContainer.addView(courseView);
+            }
         }
     }
 

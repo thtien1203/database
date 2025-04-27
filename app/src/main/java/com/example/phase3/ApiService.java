@@ -94,7 +94,7 @@ public interface ApiService {
     );
 
     @FormUrlEncoded
-    @POST("register_for_course_og.php")
+    @POST("register_for_course.php")
     Call<ApiResponse> registerForCourse(
             @Field("email") String userEmail,
             @Field("course_id") String courseId,

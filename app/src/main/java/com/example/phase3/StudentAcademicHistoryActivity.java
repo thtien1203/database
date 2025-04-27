@@ -143,26 +143,37 @@ public class StudentAcademicHistoryActivity extends AppCompatActivity {
 
     // create and add a course item for course history
     private void displayStudentHistory(List<Grade> grades) {
-        academicHistoryContainer.removeAllViews(); // clear previous views if there
+        academicHistoryContainer.removeAllViews(); // clear previous views
 
-        for (Grade grade : grades) {
-            Log.d("GRADE", grade.toString());
-            View gradeView = getLayoutInflater().inflate(R.layout.item_student_history, null);
+        if (grades == null || grades.isEmpty()) {
+            // Show the "No courses" message and hide the course list
+            findViewById(R.id.noCoursesMessage).setVisibility(View.VISIBLE);
+            academicHistoryContainer.setVisibility(View.GONE);
+        } else {
+            // Hide the "No courses" message and show the course list
+            findViewById(R.id.noCoursesMessage).setVisibility(View.GONE);
+            academicHistoryContainer.setVisibility(View.VISIBLE);
 
-            TextView courseIdSection = gradeView.findViewById(R.id.courseIdSection);
-            TextView courseName = gradeView.findViewById(R.id.courseName);
-            TextView courseInstructor = gradeView.findViewById(R.id.courseInstructor);
-            TextView courseGrade = gradeView.findViewById(R.id.finalGrade);
+            // Populate the academic history with course items
+            for (Grade grade : grades) {
+                Log.d("GRADE", grade.toString());
+                View gradeView = getLayoutInflater().inflate(R.layout.item_student_history, null);
 
-            courseGrade.setText(grade.getCurrentGrade()); // display the student's grade in this course
+                TextView courseIdSection = gradeView.findViewById(R.id.courseIdSection);
+                TextView courseName = gradeView.findViewById(R.id.courseName);
+                TextView courseInstructor = gradeView.findViewById(R.id.courseInstructor);
+                TextView courseGrade = gradeView.findViewById(R.id.finalGrade);
 
-            Course course = grade.getCourse();
-            courseIdSection.setText(course.getFormattedCourseSection());
-            courseName.setText(course.getCourseName());
-            courseInstructor.setText(course.getInstructor());
+                courseGrade.setText(grade.getCurrentGrade()); // display the student's grade in this course
 
+                Course course = grade.getCourse();
+                courseIdSection.setText(course.getFormattedCourseSection());
+                courseName.setText(course.getCourseName());
+                courseInstructor.setText(course.getInstructor());
 
-            academicHistoryContainer.addView(gradeView);
+                academicHistoryContainer.addView(gradeView);
+            }
         }
     }
+
 }
