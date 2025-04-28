@@ -50,6 +50,11 @@ public class StudentHomeActivity extends AppCompatActivity {
                 openAcademicAlerts();
             }
         });
+        studentLogoutButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {logout();}
+        });
+
 
     }
 
@@ -69,6 +74,9 @@ public class StudentHomeActivity extends AppCompatActivity {
     }
 
     private void logout() {
-        // intent here
+        Intent myIntent = new Intent(StudentHomeActivity.this, MainActivity.class);
+        myIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK); // cant use back button
+        startActivity(myIntent);
+        finish();
     }
 }
