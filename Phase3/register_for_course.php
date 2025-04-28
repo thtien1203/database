@@ -1,5 +1,5 @@
 <?php
-include 'config.php'; // assumes config.php sets up $conn
+include 'config.php'; 
 
 function createForm() {
     echo "<h2>Student Course Registration</h2>";
@@ -15,7 +15,6 @@ function createForm() {
     echo "</form>";
 }
 
-// Detect if this is an API request
 $isApiRequest = isset($_SERVER['HTTP_USER_AGENT']) &&
                 (strpos($_SERVER['HTTP_USER_AGENT'], 'okhttp') !== false ||
                  (isset($_SERVER['CONTENT_TYPE']) && strpos($_SERVER['CONTENT_TYPE'], 'application/json') !== false));
@@ -42,7 +41,6 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && (isset($_POST['register']) || $isAp
         exit;
     }
 
-    // Step 1: Get student_id from email
     $stmt = $conn->prepare("SELECT student_id FROM student WHERE email = ?");
     $stmt->bind_param("s", $email);
     $stmt->execute();
@@ -62,7 +60,6 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && (isset($_POST['register']) || $isAp
     $student_id = $result->fetch_assoc()['student_id'];
     $stmt->close();
 
-    // Step 2: Check if student is already registered for the course and section
     $stmt_check_registration = $conn->prepare("SELECT * FROM take WHERE student_id = ? AND course_id = ? AND section_id = ? AND semester = ? AND year = ?");
     $stmt_check_registration->bind_param("issss", $student_id, $course_id, $section_id, $semester, $year);
     $stmt_check_registration->execute();
@@ -79,7 +76,6 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && (isset($_POST['register']) || $isAp
         exit;
     }
 
-    // Step 3: Check prerequisites
     $stmt_prereq_check = $conn->prepare("
         SELECT p.prereq_id 
         FROM prereq p
@@ -106,7 +102,6 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && (isset($_POST['register']) || $isAp
         exit;
     }
 
-    // Step 4: Check section capacity
     $stmt_check_capacity = $conn->prepare("
         SELECT c.capacity, COUNT(st.student_id) AS students_enrolled
         FROM section s
@@ -140,7 +135,6 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && (isset($_POST['register']) || $isAp
             }
             exit;
         } else {
-            // Register the student
             $stmt_register = $conn->prepare("INSERT INTO take (student_id, course_id, section_id, semester, year) VALUES (?, ?, ?, ?, ?)");
             $stmt_register->bind_param("isssi", $student_id, $course_id, $section_id, $semester, $year);
             $success = $stmt_register->execute();

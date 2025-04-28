@@ -1,35 +1,29 @@
 <?php
 include 'config.php';
 
-// Check if it's an API request
 $isApiRequest = isset($_SERVER['HTTP_USER_AGENT']) &&
                 (strpos($_SERVER['HTTP_USER_AGENT'], 'okhttp') !== false ||
                  (isset($_SERVER['CONTENT_TYPE']) && strpos($_SERVER['CONTENT_TYPE'], 'application/json') !== false));
 
-// If it's an API request, set JSON header
 if ($isApiRequest) {
     header('Content-Type: application/json');
 }
 
 if ($_SERVER["REQUEST_METHOD"] == "GET") {
-    // Get email, semester, and year from query parameters
     $email = isset($_GET['email']) ? trim($_GET['email']) : null;
     $semester = isset($_GET['semester']) ? trim($_GET['semester']) : null;
     $year = isset($_GET['year']) ? trim($_GET['year']) : null;
 
-    // Validate input
     if (empty($email) || empty($semester) || empty($year)) {
         $error = 'Email, Semester, and Year are required';
         if ($isApiRequest) {
             echo json_encode(['success' => false, 'message' => $error]);
         } else {
-            echo "<p>$error</p>";
             createForm();
         }
         exit;
     }
 
-    // Fetch student_id from email
     $stmt = $conn->prepare("SELECT student_id FROM student WHERE email = ?");
     if (!$stmt) {
         $error = "Query preparation failed: " . $conn->error;
@@ -61,7 +55,6 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
     $studentId = $row['student_id'];
     $stmt->close();
 
-    // SQL query with dynamic semester, year, and student_id using prepared statement
     $sql = "SELECT 
                 s.course_id,
                 co.course_name,
@@ -105,14 +98,13 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
         exit;
     }
 
-    // Bind parameters and execute the query
-    $stmt->bind_param("sii", $semester, $year, $studentId);  // 's' for string, 'i' for integer
+    $stmt->bind_param("sii", $semester, $year, $studentId);  
     $stmt->execute();
     $result = $stmt->get_result();
 
-    $courses = [];
+    $schedule = []; 
+
     while ($row = $result->fetch_assoc()) {
-        // Map the result into an array of courses with all the required fields
         $course = [
             'course_id' => $row['course_id'],
             'course_name' => $row['course_name'],
@@ -136,13 +128,13 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
     if ($isApiRequest) {
         echo json_encode(['success' => true, 'schedule' => $schedule]);
     } else {
-        echo "<h3>Available Courses:</h3>";
-        if (count($courses) === 0) {
+        echo "<h3>My Schedule:</h3>";
+        if (count($schedule) === 0) {
             echo "<p>No courses found for $semester $year for student $email.</p>";
         } else {
             echo "<table border='1' cellpadding='5' cellspacing='0'>";
             echo "<tr><th>Course ID</th><th>Section</th><th>Instructor</th><th>Building</th><th>Room</th><th>Day</th><th>Time</th><th>Capacity</th><th>Enrolled</th><th>Credits</th></tr>";
-            foreach ($courses as $course) {
+            foreach ($schedule as $course) {  // Correct loop variable
                 echo "<tr>";
                 echo "<td>{$course['course_id']}</td>";
                 echo "<td>{$course['section_id']}</td>";
@@ -161,9 +153,26 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
     }
 
     $stmt->close();
-} else {
-    echo "<h2>Get Student's Schedule</h2>";
-    echo "<p>Use the URL with query parameters <code>?email=student@example.com&semester=Fall&year=2025</code></p>";
+} 
+
+function createForm() {
+    echo '<h2>Find Student Schedule</h2>';
+    echo '<form method="get" action="">';
+    echo '<label for="email">Student Email:</label><br>';
+    echo '<input type="email" id="email" name="email" required><br><br>';
+
+    echo '<label for="semester">Semester:</label><br>';
+    echo '<select id="semester" name="semester" required>';
+    echo '<option value="">--Select Semester--</option>';
+    echo '<option value="Fall">Fall</option>';
+    echo '<option value="Spring">Spring</option>';
+    echo '</select><br><br>';
+
+    echo '<label for="year">Year:</label><br>';
+    echo '<input type="text" id="year" name="year" required><br><br>';
+
+    echo '<input type="submit" value="Get Schedule">';
+    echo '</form>';
 }
 
 $conn->close();

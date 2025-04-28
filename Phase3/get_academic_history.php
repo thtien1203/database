@@ -1,23 +1,19 @@
 <?php
 include 'config.php';
 
-// Check if it's an API request
 $isApiRequest = isset($_SERVER['HTTP_USER_AGENT']) &&
                 (strpos($_SERVER['HTTP_USER_AGENT'], 'okhttp') !== false ||
                  (isset($_SERVER['CONTENT_TYPE']) && strpos($_SERVER['CONTENT_TYPE'], 'application/json') !== false));
 
-// If it's an API request, set JSON header
 if ($isApiRequest) {
     header('Content-Type: application/json');
 }
 
 if ($_SERVER["REQUEST_METHOD"] == "GET") {
-    // Get email, semester, and year from query parameters
     $email = isset($_GET['email']) ? trim($_GET['email']) : null;
     $semester = isset($_GET['semester']) ? trim($_GET['semester']) : null;
     $year = isset($_GET['year']) ? trim($_GET['year']) : null;
 
-    // Validate input
     if (empty($email) || empty($semester) || empty($year)) {
         $error = 'Email, Semester, and Year are required';
         if ($isApiRequest) {
@@ -29,7 +25,6 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
         exit;
     }
 
-    // Step 1: Get student_id from email
     $stmt = $conn->prepare("SELECT student_id FROM student WHERE email = ?");
     if (!$stmt) {
         $error = "Query preparation failed: " . $conn->error;
@@ -60,7 +55,6 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
     $studentId = $row['student_id'];
     $stmt->close();
 
-    // Step 2: Query for academic history using student_id
     $sql = "SELECT 
                 st.student_id,
                 st.grade,
@@ -113,7 +107,6 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
         exit;
     }
 
-    // Bind parameters properly
     $stmt->bind_param("isi", $studentId, $semester, $year);
     $stmt->execute();
     $result = $stmt->get_result();
@@ -122,7 +115,6 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
     $total_credits = 0;
     $total_grade_points = 0;
 
-    // Define grade points mapping
     $grade_points = [
         'A+' => 4.0,
         'A' => 4.0,
@@ -143,14 +135,11 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
         $grade = $row['grade'];
         $credits = $row['credits'];
         
-        // Calculate grade points for each course
         $grade_point = isset($grade_points[$grade]) ? $grade_points[$grade] : 0.0;
         
-        // Add credits and grade points to totals
         $total_credits += $credits;
         $total_grade_points += $grade_point * $credits;
 
-        // Add course details to grades list
         $gradesList[] = [
             'student_id' => $row['student_id'],
             'course' => [
@@ -173,10 +162,9 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
         ];
     }
 
-    // Calculate GPA
     $gpa = $total_credits > 0 ? $total_grade_points / $total_credits : 0.0;
 
-    // Prepare response data
+    
     $response = [
         'success' => true,
         'grades' => $gradesList,
@@ -187,7 +175,6 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
     if ($isApiRequest) {
         echo json_encode($response);
     } else {
-        // Display HTML response
         echo "<h3>Academic History:</h3>";
         if (empty($gradesList)) {
             echo "<p>No courses found for student $email in $semester $year.</p>";
@@ -213,7 +200,6 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
 
     $stmt->close();
 } else {
-    // Display the form for GET requests without parameters
     echo "<h2>Get Academic History</h2>";
     echo "<form method='GET'>";
     echo "<label for='email'>Email:</label><br>";
