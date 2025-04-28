@@ -1,19 +1,22 @@
 <?php
 include 'config.php';
 
-
+// check if it's an API request
 $isApiRequest = isset($_SERVER['HTTP_USER_AGENT']) &&
                 (strpos($_SERVER['HTTP_USER_AGENT'], 'okhttp') !== false ||
                  (isset($_SERVER['CONTENT_TYPE']) && strpos($_SERVER['CONTENT_TYPE'], 'application/json') !== false));
 
+// if it's an API request, set JSON header
 if ($isApiRequest) {
     header('Content-Type: application/json');
 }
 
 if ($_SERVER["REQUEST_METHOD"] == "GET") {
+    // Get the semester and year from query parameters
     $semester = isset($_GET['semester']) ? trim($_GET['semester']) : null;
     $year = isset($_GET['year']) ? trim($_GET['year']) : null;
 
+    // validate input
     if (empty($semester) || empty($year)) {
         $error = 'Semester and Year are required';
         if ($isApiRequest) {
@@ -25,6 +28,7 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
         exit;
     }
 
+    // SQL query with dynamic semester and year using prepared statement
     $sql = "SELECT 
                 s.course_id,
                 co.course_name,
@@ -66,12 +70,13 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
         exit;
     }
 
-    $stmt->bind_param("si", $semester, $year); 
+    $stmt->bind_param("si", $semester, $year);  // 's' for string, 'i' for integer
     $stmt->execute();
     $result = $stmt->get_result();
 
     $courses = [];
     while ($row = $result->fetch_assoc()) {
+        // Map the result into an array of courses with all the required fields
         $course = [
             'course_id' => $row['course_id'],
             'course_name' => $row['course_name'],
