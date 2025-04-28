@@ -4,14 +4,14 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <!-- Parent LinearLayout -->
+    
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:padding="16dp">
 
-        <!-- Title Section -->
+        
         <TextView
             android:id="@+id/taughtSectionsTitle"
             android:layout_width="match_parent"
@@ -24,14 +24,14 @@
             android:paddingBottom="16dp"
             android:paddingTop="16dp" />
 
-        <!-- Table Section -->
+        
         <TableLayout
             android:id="@+id/tableLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:stretchColumns="*">
 
-            <!-- Table Header -->
+            
             <TableRow>
                 <TextView
                     android:text="Course ID"
@@ -51,7 +51,7 @@
                     android:padding="8dp"/>
             </TableRow>
 
-            <!-- rows aded in code -->
+            
 
         </TableLayout>
 
