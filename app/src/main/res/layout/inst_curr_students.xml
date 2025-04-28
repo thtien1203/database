@@ -29,7 +29,7 @@
             android:stretchColumns="*"
             android:padding="16dp">
 
-            <!-- Table Header -->
+            
             <TableRow>
                 <TextView
                     android:text="Course ID"
@@ -45,7 +45,7 @@
                     android:padding="8dp"/>
             </TableRow>
 
-            <!-- rows added in code -->
+            
         </TableLayout>
 
     </LinearLayout>
