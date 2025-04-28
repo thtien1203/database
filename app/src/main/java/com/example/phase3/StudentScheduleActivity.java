@@ -39,7 +39,7 @@ public class StudentScheduleActivity extends AppCompatActivity {
     }
     private void getStudentSchedule() {
         String semester = "Fall"; // change to Spring
-        int year = 2023; // change to 2025
+        int year = 2028; // change to 2025
 
         Call<ApiResponse> call = apiService.getStudentSchedule(userEmail, semester, year);
 
