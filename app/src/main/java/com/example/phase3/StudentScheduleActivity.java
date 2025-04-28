@@ -66,7 +66,16 @@ public class StudentScheduleActivity extends AppCompatActivity {
 
     // create and add a course item for schedule
     private void displayStudentSchedule(List<Course> courses) {
-        studentScheduleContainer.removeAllViews(); // clear previous views if there
+        studentScheduleContainer.removeAllViews(); // clear previous views
+
+        TextView emptyMessage = findViewById(R.id.emptyMessage); // no courses found to show logic
+
+        if (courses == null || courses.isEmpty()) {
+            emptyMessage.setVisibility(View.VISIBLE);
+            return;
+        } else {
+            emptyMessage.setVisibility(View.GONE);
+        }
 
         for (Course course : courses) {
             Log.d("COURSE DEBUG", courses.toString());
@@ -86,13 +95,10 @@ public class StudentScheduleActivity extends AppCompatActivity {
             courseInstructor.setText(course.getInstructor());
             courseLocation.setText(course.getFormattedLocation());
 
-            // Create LayoutParams with only top margin
             LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
                     LinearLayout.LayoutParams.MATCH_PARENT,
                     LinearLayout.LayoutParams.WRAP_CONTENT
             );
-
-            // Only set top margin
             int topMarginInPx = (int) (getResources().getDisplayMetrics().density * 12); // 12dp top margin
             params.topMargin = topMarginInPx;
 

@@ -35,4 +35,5 @@
     <string name="create_student_account">Create Student Account</string>
     <string name="taught_sections">Taught Sections</string>
     <string name="grades_amp_alerts"><![CDATA[Grades & Alerts]]></string>
+    <string name="no_courses_found">No courses found.</string>
 </resources>

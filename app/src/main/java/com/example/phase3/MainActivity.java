@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -12,6 +13,8 @@ public class MainActivity extends AppCompatActivity {
     private Button instructorButton;
     private Button studentButton;
 
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) { // always runs when any screen is created
         super.onCreate(savedInstanceState);
@@ -19,6 +22,7 @@ public class MainActivity extends AppCompatActivity {
         // wiring up, where to look for buttons/text/any field
         instructorButton = findViewById(R.id.instructorButton);
         studentButton = findViewById(R.id.studentButton);
+
 
         instructorButton.setOnClickListener(new View.OnClickListener() {
             @Override
