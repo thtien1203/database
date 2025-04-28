@@ -55,7 +55,7 @@
                     android:padding="8dp"/>
             </TableRow>
 
-            <!-- rows added in code -->
+            
 
         </TableLayout>
 
