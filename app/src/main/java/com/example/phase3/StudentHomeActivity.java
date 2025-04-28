@@ -24,6 +24,7 @@ public class StudentHomeActivity extends AppCompatActivity {
         courseRegistrationButton = findViewById(R.id.courseRegistrationButton);
         academicHistoryButton = findViewById(R.id.academicHistoryButton);
         myScheduleButton = findViewById(R.id.myScheduleButton);
+        studentLogoutButton = findViewById(R.id.studentLogoutButton);
 
 
 
@@ -55,6 +56,7 @@ public class StudentHomeActivity extends AppCompatActivity {
             public void onClick(View v) {openMySchedule();}
         });
 
+
     }
 
     private void openCourseRegistration() {
@@ -81,7 +83,4 @@ public class StudentHomeActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-    private void logout() {
-        // intent here
-    }
 }
