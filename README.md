@@ -1,4 +1,4 @@
-Shruti Susarla, Nadia Aimandia, Tiffany Tren
+Shruti Susarla, Nadia Aimandia, Tiffany Tran
 
 To install and run the software
 * Download Andriod Studio Android Studio Ladybug Feature Drop | 2024.2.2 Patch 2
@@ -18,8 +18,6 @@ dependencies {
 
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.5'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
-
-}
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1' }
 *  all php files are in the Phase 3 folder. Copy the folder into htdocs XAMPP
 *  Change url in string.xml to contain your IP ADDRESS. string.xml is found in app/main/res/values
